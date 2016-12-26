@@ -6,6 +6,12 @@ import saidanov.bank.system.beans.factory.AccountFactory;
 import saidanov.bank.system.beans.tools.DepositCurrency;
 
 /**
+ * Manager
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * Manager helps Client to manage all Clients accounts.
  */
 public class Manager {
@@ -19,6 +25,7 @@ public class Manager {
     public int getManagerId() {
         return managerId;
     }
+
     public void setManagerId(int managerId) {
         this.managerId = managerId;
     }

@@ -3,6 +3,12 @@ package saidanov.bank.system.beans.account;
 import saidanov.bank.system.beans.database.Database;
 
 /**
+ * Account
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * The base class for all accounts
  */
 public class Account {
@@ -11,38 +17,26 @@ public class Account {
     public static int accountIdCounter = 0;
 
     private int accountId;
+
     private int clientId;
+
     private int initialContribution;
+
     /**amountOfMoney will raise if Client decided to put money into the Account, and will fall if Client decided to take money from account.
      * At the time of account creation amountOfMoney == initial contribution*/
     private int amountOfMoney;
 
-    public int getAmountOfMoney() {
-        return amountOfMoney;
-    }
-    public void setAmountOfMoney(int amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
-    }
-
-    public int getAccountId() {
-        return accountId;
-    }
-    public void setAccountId(int accountId) {
+    /**
+     * Constructor of Account
+     * @param accountId unique Account id
+     * @param clientId unique Client id
+     * @param initialContribution is the amount of money that Client put into the account at first time
+     * */
+    public Account(int accountId, int initialContribution, int clientId) {
         this.accountId = accountId;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    public int getInitialContribution() {
-        return initialContribution;
-    }
-    public void setInitialContribution(int initialContribution) {
         this.initialContribution = initialContribution;
+        this.amountOfMoney = initialContribution;
+        this.clientId = clientId;
     }
 
     @Override
@@ -52,12 +46,6 @@ public class Account {
                 "; initialContribution: " + initialContribution +
                 " amountOfMoney: " + amountOfMoney;
     }
-
-    public static Account getAccountById(int accountId){
-        return Database.listOfAccounts.get(accountId);
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,7 +59,6 @@ public class Account {
         return amountOfMoney == account.amountOfMoney;
 
     }
-
     @Override
     public int hashCode() {
         int result = accountId;
@@ -81,17 +68,40 @@ public class Account {
         return result;
     }
 
-    /**
-     * Constructor of Account
-     * @param accountId unique Account id
-     * @param clientId unique Client id
-     * @param initialContribution is the amount of money that Client put into the account at first time
-     * */
-    public Account(int accountId, int initialContribution, int clientId) {
+    public int getAmountOfMoney() {
+        return amountOfMoney;
+    }
+
+    public void setAmountOfMoney(int amountOfMoney) {
+        this.amountOfMoney = amountOfMoney;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
         this.accountId = accountId;
-        this.initialContribution = initialContribution;
-        this.amountOfMoney = initialContribution;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
         this.clientId = clientId;
+    }
+
+    public int getInitialContribution() {
+        return initialContribution;
+    }
+
+    public void setInitialContribution(int initialContribution) {
+        this.initialContribution = initialContribution;
+    }
+
+    public static Account getAccountById(int accountId){
+        return Database.listOfAccounts.get(accountId);
     }
 
 }

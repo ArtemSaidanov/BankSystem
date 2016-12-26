@@ -3,6 +3,12 @@ package saidanov.bank.system.beans.account;
 import saidanov.bank.system.beans.tools.DepositCurrency;
 
 /**
+ * Deposit
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * Deposit is the amount of money that the Client sent to the Bank in order to get income as percentages.
  */
 public class Deposit extends Account {
@@ -12,7 +18,8 @@ public class Deposit extends Account {
     private DepositCurrency currency;
     private int accountId;
 
-    public Deposit(int clientId, int initialContribution, int term, double persentage, DepositCurrency currency, int accountId) {
+    public Deposit(int clientId, int initialContribution, int term, double persentage,
+                   DepositCurrency currency, int accountId) {
         super(accountId, clientId, initialContribution);
         this.term = term;
         this.persentage = persentage;
@@ -33,7 +40,6 @@ public class Deposit extends Account {
         return currency == deposit.currency;
 
     }
-
     @Override
     public int hashCode() {
         int result = super.hashCode();

@@ -8,6 +8,12 @@ import saidanov.bank.system.exceptions.NotEnoughMoneyException;
 
 
 /**
+ * Client
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * <p>This class is the base class of Person and Businessman.</p>
  * <p>Client communicates with class Manager.</p>
  * <p>Client has basic methods to manage accounts</p>
@@ -16,7 +22,12 @@ public abstract class Client {
 
     /**This counter ensures the uniqueness of each Client*/
     public static int clientIdCounter = 0;
+
     private int clientId;
+
+    Client(int clientId) {
+        this.clientId = clientId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,11 +48,8 @@ public abstract class Client {
     public int getClientId() {
         return clientId;
     }
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
 
-    Client(int clientId) {
+    public void setClientId(int clientId) {
         this.clientId = clientId;
     }
 
@@ -50,7 +58,6 @@ public abstract class Client {
     public static Client getClientById(int clientId){
       return Database.listOfClients.get(clientId);
     }
-
 
     /**
      * <p>Method for creating an Account</p>
@@ -70,8 +77,10 @@ public abstract class Client {
      * @param term the amount of months which the deposit will be kept in the bank
      * @param persentage amount of interest that the client will receive per month
      */
-    public Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency currency) {
-        return Manager.createAccount(clientId, initialContribution,term,persentage,currency);
+    public Account createAccount(int clientId, int initialContribution, int term,
+                                 double persentage, DepositCurrency currency) {
+        return Manager.createAccount(clientId, initialContribution, term,
+                persentage, currency);
     }
 
     /**
@@ -92,11 +101,6 @@ public abstract class Client {
         }
     }
 
-    /**This method is not ready yet*/
-    public void deleteAccount(int clientId, int accountId) {
-        //TODO
-    }
-
     /**
      * This method puts money on account
      * @param accountId unique accountId
@@ -104,5 +108,12 @@ public abstract class Client {
     public void putMoneyToAccount(int accountId, int money){
         //TODO
     }
+
+    /**This method is not ready yet*/
+    public void deleteAccount(int clientId, int accountId) {
+        //TODO
+    }
+
+
 }
 

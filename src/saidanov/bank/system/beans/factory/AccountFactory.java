@@ -6,6 +6,12 @@ import saidanov.bank.system.beans.database.Database;
 import saidanov.bank.system.beans.tools.DepositCurrency;
 
 /**
+ * AccountFactory
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * <p>AccountFactory creates accounts.</p>
  * <p>AccountFactory communicates only with Manager.</p>
  */
@@ -28,7 +34,8 @@ public final class AccountFactory {
      * @param initialContribution is the amount of money that Client put into the account at first time
      * @return new Account
      * */
-    public static Account createAccount(int clientId, int initialContribution, int accountId) {
+    public static Account createAccount(int clientId, int initialContribution,
+                                        int accountId) {
         Account account = new Account(clientId,initialContribution,accountId);
         Database.listOfAccounts.add(account);
         return account;
@@ -43,8 +50,12 @@ public final class AccountFactory {
      * @param persentage amount of interest that the client will receive per months
      * @return new Deposit
      * */
-    public static Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency usd, int accountId){
-        Account account = new Deposit(clientId,initialContribution,term,persentage,usd,accountId);
+    public static Account createAccount(int clientId, int initialContribution,
+                                        int term, double persentage,
+                                        DepositCurrency usd,
+                                        int accountId){
+        Account account = new Deposit(clientId, initialContribution, term,
+                persentage,usd,accountId);
         Database.listOfAccounts.add(account);
         return account;
     }

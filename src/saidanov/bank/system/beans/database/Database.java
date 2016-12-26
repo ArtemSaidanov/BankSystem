@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Database
+ *
+ * @version  1.0
+ *
+ * Date 26.12.2016
+ *
  * This database contains listOfClients and clientsAndAccount
  */
 public final class Database {
