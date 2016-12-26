@@ -29,5 +29,6 @@ public class BankSystemRunner {
         System.out.println(Account.getAccountById(Database.clientsAndAccounts.get(client.getClientId()).get(0)).getAmountOfMoney());
         client.takeMoneyFromAccount(0,20);
         client1.takeMoneyFromAccount(1,30);
+        System.out.println();
     }
 }
