@@ -1,4 +1,4 @@
-package saidanov.bank.system.beans.tools;
+package saidanov.bank.system.beans;
 
 /**
  * DepositCurrency

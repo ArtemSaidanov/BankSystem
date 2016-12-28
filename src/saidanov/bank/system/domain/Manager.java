@@ -1,9 +1,10 @@
-package saidanov.bank.system.beans;
+package saidanov.bank.system.domain;
 
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.beans.database.DatabaseHelper;
-import saidanov.bank.system.beans.factory.AccountFactory;
-import saidanov.bank.system.beans.tools.DepositCurrency;
+import saidanov.bank.system.beans.interfaces.CreateAccount;
+import saidanov.bank.system.domain.factory.AccountFactory;
+import saidanov.bank.system.beans.DepositCurrency;
 
 /**
  * Manager
@@ -14,20 +15,9 @@ import saidanov.bank.system.beans.tools.DepositCurrency;
  *
  * Manager helps Client to manage all Clients accounts.
  */
-public class Manager {
+public class Manager implements CreateAccount {
 
-    private int managerId;
-
-    public Manager(int managerId) {
-        this.managerId = managerId;
-    }
-
-    public int getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(int managerId) {
-        this.managerId = managerId;
+    public Manager() {
     }
 
     /**
@@ -36,8 +26,8 @@ public class Manager {
      * @param clientId unique id of Client
      * @param initialContribution is the amount of money that Client put into the account at first time
      * */
-    public static Account createAccount(int clientId, int initialContribution) {
-        Account account = AccountFactory.createAccount(clientId, initialContribution, Account.accountIdCounter);
+    public Account createAccount(int clientId, int initialContribution) {
+        Account account = new AccountFactory().createAccount(clientId, initialContribution, Account.accountIdCounter);
         DatabaseHelper.addToDatabase(clientId);
         Account.accountIdCounter++;
         return account;
@@ -51,8 +41,8 @@ public class Manager {
      * @param term the amount of months which the deposit will be kept in the bank
      * @param persentage amount of interest that the client will receive per months
      * */
-    public static Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency currency) {
-        Account account = AccountFactory.createAccount(clientId, initialContribution, term, persentage, currency, Account.accountIdCounter);
+    public Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency currency) {
+        Account account = new AccountFactory().createAccount(clientId, initialContribution, term, persentage, currency, Account.accountIdCounter);
         DatabaseHelper.addToDatabase(clientId);
         Account.accountIdCounter++;
         return account;

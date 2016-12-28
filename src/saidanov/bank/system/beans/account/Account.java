@@ -46,6 +46,7 @@ public class Account {
                 "; initialContribution: " + initialContribution +
                 " amountOfMoney: " + amountOfMoney;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,6 +60,7 @@ public class Account {
         return amountOfMoney == account.amountOfMoney;
 
     }
+
     @Override
     public int hashCode() {
         int result = accountId;

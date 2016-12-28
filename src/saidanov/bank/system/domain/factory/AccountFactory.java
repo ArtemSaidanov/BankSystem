@@ -1,9 +1,9 @@
-package saidanov.bank.system.beans.factory;
+package saidanov.bank.system.domain.factory;
 
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.beans.account.Deposit;
 import saidanov.bank.system.beans.database.Database;
-import saidanov.bank.system.beans.tools.DepositCurrency;
+import saidanov.bank.system.beans.DepositCurrency;
 
 /**
  * AccountFactory
@@ -15,17 +15,8 @@ import saidanov.bank.system.beans.tools.DepositCurrency;
  * <p>AccountFactory creates accounts.</p>
  * <p>AccountFactory communicates only with Manager.</p>
  */
-public final class AccountFactory {
+public final class AccountFactory{
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 
     /**
      * <p>Method for creating an Account</p>
@@ -34,7 +25,7 @@ public final class AccountFactory {
      * @param initialContribution is the amount of money that Client put into the account at first time
      * @return new Account
      * */
-    public static Account createAccount(int clientId, int initialContribution,
+    public Account createAccount(int clientId, int initialContribution,
                                         int accountId) {
         Account account = new Account(clientId,initialContribution,accountId);
         Database.listOfAccounts.add(account);
@@ -50,10 +41,7 @@ public final class AccountFactory {
      * @param persentage amount of interest that the client will receive per months
      * @return new Deposit
      * */
-    public static Account createAccount(int clientId, int initialContribution,
-                                        int term, double persentage,
-                                        DepositCurrency usd,
-                                        int accountId){
+    public Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency usd, int accountId){
         Account account = new Deposit(clientId, initialContribution, term,
                 persentage,usd,accountId);
         Database.listOfAccounts.add(account);

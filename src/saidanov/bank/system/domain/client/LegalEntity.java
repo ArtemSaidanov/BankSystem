@@ -1,39 +1,39 @@
-package saidanov.bank.system.beans.client;
+package saidanov.bank.system.domain.client;
 
 /**
- * Businessman
+ * LegalEntity
  *
  * @version  1.0
  *
  * Date 26.12.2016
  *
- * <p>Businessman class describing a business</p>
+ * <p>LegalEntity class describing a business</p>
  */
-public class Businessman extends Client {
+public class LegalEntity extends Client {
 
     private String typeOfBusiness;
 
-    private String bossName;
+    private String responsiblePersonName;
 
     /**This field was added only to demonstrate the power of polymorphism*/
     private int totalInvestment;
 
     /**
-     * <p>Constructor of Businessman class</p>
+     * <p>Constructor of LegalEntity class</p>
      * @param clientId unique id of Client
      * @param typeOfBusiness the type of business activity
-     * @param bossName person communicating with the manager
+     * @param responsiblePersonName person communicating with the manager
      */
-    public Businessman(int clientId, String typeOfBusiness, String bossName) {
+    public LegalEntity(int clientId, String typeOfBusiness, String responsiblePersonName) {
         super(clientId);
         this.typeOfBusiness = typeOfBusiness;
-        this.bossName = bossName;
+        this.responsiblePersonName = responsiblePersonName;
     }
 
     @Override
     public String toString() {
-        return "clientId " + this.getClientId() + "; Businessman -" +
-                " TypeOfBusiness: " + typeOfBusiness + "; BossName: " + bossName;
+        return "clientId " + this.getClientId() + "; LegalEntity -" +
+                " TypeOfBusiness: " + typeOfBusiness + "; BossName: " + responsiblePersonName;
     }
     @Override
     public boolean equals(Object o) {
@@ -41,19 +41,19 @@ public class Businessman extends Client {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Businessman that = (Businessman) o;
+        LegalEntity that = (LegalEntity) o;
 
         if (totalInvestment != that.totalInvestment) return false;
         if (typeOfBusiness != null ? !typeOfBusiness.equals(that.typeOfBusiness) : that.typeOfBusiness != null)
             return false;
-        return bossName != null ? bossName.equals(that.bossName) : that.bossName == null;
+        return responsiblePersonName != null ? responsiblePersonName.equals(that.responsiblePersonName) : that.responsiblePersonName == null;
 
     }
     @Override
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (typeOfBusiness != null ? typeOfBusiness.hashCode() : 0);
-        result = 31 * result + (bossName != null ? bossName.hashCode() : 0);
+        result = 31 * result + (responsiblePersonName != null ? responsiblePersonName.hashCode() : 0);
         result = 31 * result + totalInvestment;
         return result;
     }
@@ -79,10 +79,10 @@ public class Businessman extends Client {
         this.typeOfBusiness = typeOfBusiness;
     }
 
-    public String getBossName() {
-        return bossName;
+    public String getResponsiblePersonName() {
+        return responsiblePersonName;
     }
-    public void setBossName(String bossName) {
-        this.bossName = bossName;
+    public void setResponsiblePersonName(String responsiblePersonName) {
+        this.responsiblePersonName = responsiblePersonName;
     }
 }

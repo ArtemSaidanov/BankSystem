@@ -1,16 +1,16 @@
-package saidanov.bank.system.beans.client;
+package saidanov.bank.system.domain.client;
 
 
 /**
- * Person
+ * Individual
  *
  * @version  1.0
  *
  * Date 26.12.2016
  *
- * <p>Person class describing a separate man</p>
+ * <p>Individual class describing a separate man</p>
  */
-public class Person extends Client {
+public class Individual extends Client {
 
     private String name;
     private String surname;
@@ -19,13 +19,13 @@ public class Person extends Client {
     private int happiness;
 
     /**
-     * <p>Constructor of Person class</p>
+     * <p>Constructor of Individual class</p>
      * @param clientId unique clients id
-     * @param name name of Person
-     * @param surname surname of Person
-     * @param age age of Person
+     * @param name name of Individual
+     * @param surname surname of Individual
+     * @param age age of Individual
      */
-    public Person(int clientId, String name, String surname, int age) {
+    public Individual(int clientId, String name, String surname, int age) {
         super(clientId);
         this.name = name;
         this.surname = surname;
@@ -38,14 +38,14 @@ public class Person extends Client {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        Person person = (Person) o;
+        Individual individual = (Individual) o;
 
-        if (age != person.age) return false;
-        if (happiness != person.happiness) return false;
-        if (name != null ? !name.equals(person.name) : person.name != null)
+        if (age != individual.age) return false;
+        if (happiness != individual.happiness) return false;
+        if (name != null ? !name.equals(individual.name) : individual.name != null)
             return false;
-        return surname != null ? surname.equals(person.surname)
-                : person.surname == null;
+        return surname != null ? surname.equals(individual.surname)
+                : individual.surname == null;
 
     }
     @Override
@@ -59,7 +59,7 @@ public class Person extends Client {
     }
     @Override
     public String toString() {
-        return "clientId " + this.getClientId() + "; Person -" +
+        return "clientId " + this.getClientId() + "; Individual -" +
                 " Name: " + name + "; Surname: " + surname + "; Age: " + age;
     }
 

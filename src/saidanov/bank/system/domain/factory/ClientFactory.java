@@ -1,8 +1,8 @@
-package saidanov.bank.system.beans.factory;
+package saidanov.bank.system.domain.factory;
 
-import saidanov.bank.system.beans.client.Businessman;
-import saidanov.bank.system.beans.client.Client;
-import saidanov.bank.system.beans.client.Person;
+import saidanov.bank.system.domain.client.Individual;
+import saidanov.bank.system.domain.client.LegalEntity;
+import saidanov.bank.system.domain.client.Client;
 import saidanov.bank.system.beans.database.Database;
 
 /**
@@ -17,19 +17,19 @@ import saidanov.bank.system.beans.database.Database;
 public final class ClientFactory {
 
     /**
-     * This method creates Person*/
+     * This method creates Individual*/
     public static Client createClient(String name, String surname, int age) {
         int clientId = Client.clientIdCounter++;
-        Client client = new Person(clientId, name, surname, age);
+        Client client = new Individual(clientId, name, surname, age);
         Database.listOfClients.add(client);
         return client;
     }
 
     /**
-     * This method creates Businessman*/
+     * This method creates LegalEntity*/
     public static Client createClient(String typeOfBusiness, String bossName){
         int clientId = Client.clientIdCounter++;
-        Client client = new Businessman(clientId, typeOfBusiness, bossName);
+        Client client = new LegalEntity(clientId, typeOfBusiness, bossName);
         Database.listOfClients.add(client);
         return client;
     }

@@ -1,7 +1,7 @@
 package saidanov.bank.system.beans.database;
 
 import saidanov.bank.system.beans.account.Account;
-import saidanov.bank.system.beans.client.Client;
+import saidanov.bank.system.domain.client.Client;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,9 +1,10 @@
-package saidanov.bank.system.beans.client;
+package saidanov.bank.system.domain.client;
 
-import saidanov.bank.system.beans.Manager;
+import saidanov.bank.system.beans.interfaces.CreateAccount;
+import saidanov.bank.system.domain.Manager;
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.beans.database.Database;
-import saidanov.bank.system.beans.tools.DepositCurrency;
+import saidanov.bank.system.beans.DepositCurrency;
 import saidanov.bank.system.exceptions.NotEnoughMoneyException;
 
 
@@ -14,11 +15,11 @@ import saidanov.bank.system.exceptions.NotEnoughMoneyException;
  *
  * Date 26.12.2016
  *
- * <p>This class is the base class of Person and Businessman.</p>
+ * <p>This class is the base class of Individual and LegalEntity.</p>
  * <p>Client communicates with class Manager.</p>
  * <p>Client has basic methods to manage accounts</p>
  */
-public abstract class Client {
+public abstract class Client implements CreateAccount{
 
     /**This counter ensures the uniqueness of each Client*/
     public static int clientIdCounter = 0;
@@ -66,7 +67,8 @@ public abstract class Client {
      * @param initialContribution is the amount of money that Client put into the account at first time
      */
     public Account createAccount(int clientId,int initialContribution) {
-        return Manager.createAccount(clientId,initialContribution);
+        Manager manager = new Manager();
+        return manager.createAccount(clientId,initialContribution);
     }
 
     /**
@@ -79,7 +81,8 @@ public abstract class Client {
      */
     public Account createAccount(int clientId, int initialContribution, int term,
                                  double persentage, DepositCurrency currency) {
-        return Manager.createAccount(clientId, initialContribution, term,
+        Manager manager = new Manager();
+        return manager.createAccount(clientId, initialContribution, term,
                 persentage, currency);
     }
 
@@ -96,7 +99,8 @@ public abstract class Client {
             try {
                 throw new NotEnoughMoneyException();
             } catch (NotEnoughMoneyException e) {
-                System.out.println("Sorry, you do not have enough money. Your amount of money in this account: " +  account.getAmountOfMoney());
+                System.out.println("Sorry, you do not have enough money." +
+                        "Your amount of money in this account: " +  account.getAmountOfMoney());
             }
         }
     }

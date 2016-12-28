@@ -1,6 +1,6 @@
 package saidanov.bank.system.beans.account;
 
-import saidanov.bank.system.beans.tools.DepositCurrency;
+import saidanov.bank.system.beans.DepositCurrency;
 
 /**
  * Deposit
