@@ -7,6 +7,8 @@ import saidanov.bank.system.beans.database.Database;
 import saidanov.bank.system.beans.DepositCurrency;
 import saidanov.bank.system.exceptions.NotEnoughMoneyException;
 
+import java.util.List;
+
 
 /**
  * Client
@@ -61,6 +63,12 @@ public abstract class Client implements CreateAccount{
     }
 
     /**
+     * @return returns you all acountIds that Client has*/
+    public List<Integer> getAccountList(int clientId){
+        return Database.clientsAndAccounts.get(clientId);
+    }
+
+    /**
      * <p>Method for creating an Account</p>
      * <p>Client calls Manager to create an account</p>
      * @param clientId unique id of Client
@@ -86,15 +94,16 @@ public abstract class Client implements CreateAccount{
                 persentage, currency);
     }
 
+
     /**
      * <p>Method allows the Client to take money from his account</p>
      * @param accountId unique accountId
      * @param money money that Client decided to take
      */
-    public void takeMoneyFromAccount(int accountId, int money) {
+    public void takeMoney(int accountId, int money) {
         Account account = Database.listOfAccounts.get(accountId);
-        account.setAmountOfMoney(account.getAmountOfMoney() - money);
-        if(account.getAmountOfMoney()<0){
+        int i = account.setAmountOfMoney(account.getAmountOfMoney() - money);
+        if(i<0){
             account.setAmountOfMoney(account.getAmountOfMoney() + money);
             try {
                 throw new NotEnoughMoneyException();
@@ -106,18 +115,40 @@ public abstract class Client implements CreateAccount{
     }
 
     /**
-     * This method puts money on account
+     * This method puts money into the account
      * @param accountId unique accountId
      * @param money money that Client decided to take*/
-    public void putMoneyToAccount(int accountId, int money){
-        //TODO
+    public void putMoney(int accountId, int money) {
+        Account account = Database.listOfAccounts.get(accountId);
+        account.setAmountOfMoney(account.getAmountOfMoney() + money);
+    }
+
+    /**
+     * @param accountId unique accountId
+     * @return returns you amount of money that Client has on his account
+     */
+    public int accountBalanceCheck(int accountId){
+        return Account.getAccountById(accountId).getAmountOfMoney();
+    }
+
+    /**
+     * @param clientId unique clientId
+     * @return returns you amount of money that Client has on all his accounts*/
+    public int allAccountsBalanceCheck(int clientId){
+        List<Integer> list = getAccountList(clientId);
+        /**
+         * This int contains summ of Client's money from all Accounts*/
+        int allMoney = 0;
+        for (int i = 0; i < list.size(); i++) {
+            Account account = Account.getAccountById(list.get(i));
+            allMoney += account.getAmountOfMoney();
+        }
+        return allMoney;
     }
 
     /**This method is not ready yet*/
     public void deleteAccount(int clientId, int accountId) {
         //TODO
     }
-
-
 }
 

@@ -16,7 +16,7 @@ public class Account {
     /**This counter ensures the uniqueness of each Account*/
     public static int accountIdCounter = 0;
 
-    private int accountId;
+    public int accountId;
 
     private int clientId;
 
@@ -24,7 +24,7 @@ public class Account {
 
     /**amountOfMoney will raise if Client decided to put money into the Account, and will fall if Client decided to take money from account.
      * At the time of account creation amountOfMoney == initial contribution*/
-    private int amountOfMoney;
+    public int amountOfMoney;
 
     /**
      * Constructor of Account
@@ -32,7 +32,7 @@ public class Account {
      * @param clientId unique Client id
      * @param initialContribution is the amount of money that Client put into the account at first time
      * */
-    public Account(int accountId, int initialContribution, int clientId) {
+    public Account(int clientId, int initialContribution, int accountId) {
         this.accountId = accountId;
         this.initialContribution = initialContribution;
         this.amountOfMoney = initialContribution;
@@ -41,10 +41,9 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account - " + "accountId: " + accountId +
-                "; clientId: " + clientId +
-                "; initialContribution: " + initialContribution +
-                " amountOfMoney: " + amountOfMoney;
+        return "Account :" + accountId
+                + "clientId " + clientId
+                + "initialContribution :" + initialContribution;
     }
 
     @Override
@@ -74,8 +73,9 @@ public class Account {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(int amountOfMoney) {
+    public int setAmountOfMoney(int amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+        return amountOfMoney;
     }
 
     public int getAccountId() {

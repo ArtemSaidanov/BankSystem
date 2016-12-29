@@ -64,9 +64,8 @@ public class Individual extends Client {
     }
 
     @Override
-    public void takeMoneyFromAccount(int accountId, int money) {
-        super.takeMoneyFromAccount(accountId, money);
-        System.out.println("person Class");
+    public void takeMoney(int accountId, int money) {
+        super.takeMoney(accountId, money);
         happiness++;
     }
 

@@ -59,8 +59,8 @@ public class LegalEntity extends Client {
     }
 
     @Override
-    public void takeMoneyFromAccount(int accountId, int money) {
-        super.takeMoneyFromAccount(accountId, money);
+    public void takeMoney(int accountId, int money) {
+        super.takeMoney(accountId, money);
         System.out.println("buisness Class");
         totalInvestment += money;
     }
