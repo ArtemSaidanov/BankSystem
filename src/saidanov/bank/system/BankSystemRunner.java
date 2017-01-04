@@ -6,6 +6,8 @@ import saidanov.bank.system.beans.account.Deposit;
 import saidanov.bank.system.domain.client.Client;
 import saidanov.bank.system.beans.database.Database;
 import saidanov.bank.system.domain.factory.ClientFactory;
+import saidanov.bank.system.exceptions.NotEnoughMoneyException;
+import saidanov.bank.system.exceptions.TermCanNotRaiseException;
 
 import java.util.List;
 
@@ -34,17 +36,25 @@ public class BankSystemRunner {
 
         System.out.println(client.allAccountsBalanceCheck(client.getClientId()));
 
-//        Account account = Account.getAccountById(list.get(0));
-//        Deposit deposit = (Deposit) account;
-//        System.out.println(account);
+        Account account = Account.getAccountById(list.get(0));
+        Deposit deposit = (Deposit) account;
+        System.out.println(account);
 
-//        deposit.setTerm(11);
-//        System.out.println("Profit after one month  " + deposit.getDepositProfit());
-//
-//        client.takeMoney(0, 250);
-//
-//        System.out.println("Profit after takeMoney  " + deposit.getDepositProfit());
-//
+        try {
+            deposit.setTerm(11000);
+        } catch (TermCanNotRaiseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Profit after one month  " + deposit.getDepositProfit());
+
+        try {
+            client.takeMoney(0, 250);
+        } catch (NotEnoughMoneyException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Profit after takeMoney  " + deposit.getDepositProfit());
+
 //        deposit.setTerm(5);
 //        System.out.println(deposit.getDepositProfit());
 //        System.out.println(account.getAmountOfMoney());

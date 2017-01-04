@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="631aea15-9b39-43a8-ad5e-7bf43a080115" name="Default" comment="Refract &quot;Person&quot; to &quot;Individual&quot; and &quot;Businessman&quot; to &quot;LegalEntity&quot;.&#10;Add method">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/WrongAccountIdException.java" />
+    <list default="true" id="631aea15-9b39-43a8-ad5e-7bf43a080115" name="Default" comment="Modified exceptions.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/BankSystemRunner.class" afterPath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/BankSystemRunner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/account/Account.class" afterPath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/account/Account.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/account/Deposit.class" afterPath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/account/Deposit.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/exceptions/NotEnoughMoneyException.class" afterPath="$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/exceptions/NotEnoughMoneyException.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/BankSystemRunner.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/BankSystemRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Account.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Account.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/Test.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java" afterPath="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java" />
     </list>
     <ignored path="BankSystem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +38,10 @@
       <file leaf-file-name="BankSystemRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/BankSystemRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="69" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+            <state relative-caret-position="612">
+              <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1451#1515#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -52,47 +50,64 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-56">
-              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            <state relative-caret-position="574">
+              <caret line="137" column="8" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
               <folding>
                 <element signature="docComment;class#Client#0" expanded="false" />
                 <element signature="docComment;field#clientIdCounter#0;class#Client#0" expanded="false" />
                 <element signature="method#equals#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#getClientById#0;class#Client#0" expanded="false" />
-                <element signature="method#getClientById#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#getAccountList#0;class#Client#0" expanded="false" />
-                <element signature="method#getAccountList#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#createAccount#0;class#Client#0" expanded="false" />
                 <element signature="method#createAccount#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#createAccount#1;class#Client#0" expanded="false" />
                 <element signature="docComment;method#takeMoney#0;class#Client#0" expanded="false" />
-                <element signature="method#takeMoney#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#putMoney#0;class#Client#0" expanded="false" />
-                <element signature="method#putMoney#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#accountBalanceCheck#0;class#Client#0" expanded="false" />
-                <element signature="method#accountBalanceCheck#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#allAccountsBalanceCheck#0;class#Client#0" expanded="false" />
-                <element signature="method#allAccountsBalanceCheck#0;class#Client#0" expanded="false" />
                 <element signature="docComment;method#deleteAccount#0;class#Client#0" expanded="false" />
-                <element signature="method#deleteAccount#0;class#Client#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Individual.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java">
+      <file leaf-file-name="ClientFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/factory/ClientFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="493">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/database/Database.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Deposit.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
               <folding>
-                <element signature="docComment;class#Individual#0" expanded="false" />
-                <element signature="docComment;field#happiness#0;class#Individual#0" expanded="false" />
-                <element signature="docComment;method#Individual#0;class#Individual#0" expanded="false" />
-                <element signature="method#Individual#0;class#Individual#0" expanded="false" />
-                <element signature="method#equals#0;class#Individual#0" expanded="false" />
-                <element signature="method#hashCode#0;class#Individual#0" expanded="false" />
-                <element signature="method#toString#0;class#Individual#0" expanded="false" />
+                <element signature="docComment;class#Deposit#0" expanded="false" />
+                <element signature="docComment;field#term#0;class#Deposit#0" expanded="false" />
+                <element signature="method#Deposit#0;class#Deposit#0" expanded="false" />
+                <element signature="method#hashCode#0;class#Deposit#0" expanded="false" />
+                <element signature="method#toString#0;class#Deposit#0" expanded="false" />
+                <element signature="docComment;method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
+                <element signature="method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
+                <element signature="docComment;method#setTerm#0;class#Deposit#0" expanded="false" />
+                <element signature="docComment;method#setDepositProfit#0;class#Deposit#0" expanded="false" />
+                <element signature="method#setPersentage#0;class#Deposit#0" expanded="false" />
+                <element signature="method#setCurrency#0;class#Deposit#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -101,19 +116,65 @@
       <file leaf-file-name="LegalEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+            <state relative-caret-position="197">
+              <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
               <folding>
                 <element signature="docComment;class#LegalEntity#0" expanded="false" />
                 <element signature="docComment;field#totalInvestment#0;class#LegalEntity#0" expanded="false" />
                 <element signature="docComment;method#LegalEntity#0;class#LegalEntity#0" expanded="false" />
                 <element signature="method#LegalEntity#0;class#LegalEntity#0" expanded="false" />
                 <element signature="method#toString#0;class#LegalEntity#0" expanded="false" />
-                <element signature="method#equals#0;class#LegalEntity#0" expanded="false" />
                 <element signature="method#hashCode#0;class#LegalEntity#0" expanded="false" />
                 <element signature="method#setTotalInvestment#0;class#LegalEntity#0" expanded="false" />
                 <element signature="method#setTypeOfBusiness#0;class#LegalEntity#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TermCanNotRaiseException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Individual.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
+              <folding>
+                <element signature="docComment;class#Individual#0" expanded="false" />
+                <element signature="docComment;field#happiness#0;class#Individual#0" expanded="false" />
+                <element signature="docComment;method#Individual#0;class#Individual#0" expanded="false" />
+                <element signature="method#Individual#0;class#Individual#0" expanded="false" />
+                <element signature="method#hashCode#0;class#Individual#0" expanded="false" />
+                <element signature="method#toString#0;class#Individual#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NotEnoughMoneyException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WrongAccountIdException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/WrongAccountIdException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -163,7 +224,6 @@
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/client/ClientFactory.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/database/ClientDatabase.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/tools/AccountFactory.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/Test.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/database/Database.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/database/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/tools/DepositCurrency.java" />
@@ -180,15 +240,16 @@
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/factory/AccountFactory.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/Manager.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/interfaces/CreateAccount.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/WrongAccountIdException.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java" />
-        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Account.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java" />
         <option value="$PROJECT_DIR$/src/saidanov/bank/system/BankSystemRunner.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/Test.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java" />
+        <option value="$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java" />
       </list>
     </option>
   </component>
@@ -307,6 +368,9 @@
           </State>
           <State>
             <id>RELAX NG</id>
+          </State>
+          <State>
+            <id>Resource management issuesJava</id>
           </State>
           <State>
             <id>Security issuesJava</id>
@@ -598,12 +662,12 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="F:/Git/bin/git.exe" />
   </component>
@@ -922,36 +986,43 @@
       <option name="project" value="LOCAL" />
       <updated>1482923233054</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refract &quot;Person&quot; to &quot;Individual&quot; and &quot;Businessman&quot; to &quot;LegalEntity&quot;.&#10;Add method &quot;accountBalanceCheck&quot;, &quot;allAccountBalanceCheck&quot;.&#10;Modified method &quot;takeMoney&quot;(special implementation in &quot;Deposit&quot; class was added).&#10;Two exceptions was added: &quot;TermCanNotRaiseException&quot; and &quot;WrongAccountIdException&quot;.">
+      <created>1483015554838</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1483015554838</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17963752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17963752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3517316" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -966,14 +1037,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17963752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32792208" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32756758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -995,7 +1066,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="The project was modified in accordance with Java Code Conventions" />
     <MESSAGE value="Created package &quot;domain&quot;. Added package &quot;client&quot; and &quot;factory&quot;, class Manager to package &quot;domain&quot;.&#10;Created interface &quot;CreateAccount&quot;. Classes Manager and Client implements CreateAccount" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created package &quot;domain&quot;. Added package &quot;client&quot; and &quot;factory&quot;, class Manager to package &quot;domain&quot;.&#10;Created interface &quot;CreateAccount&quot;. Classes Manager and Client implements CreateAccount" />
+    <MESSAGE value="Refract &quot;Person&quot; to &quot;Individual&quot; and &quot;Businessman&quot; to &quot;LegalEntity&quot;.&#10;Add method &quot;accountBalanceCheck&quot;, &quot;allAccountBalanceCheck&quot;.&#10;Modified method &quot;takeMoney&quot;(special implementation in &quot;Deposit&quot; class was added).&#10;Two exceptions was added: &quot;TermCanNotRaiseException&quot; and &quot;WrongAccountIdException&quot;." />
+    <MESSAGE value="Modified exceptions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified exceptions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1201,46 +1274,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/client/Client.class" />
     <entry file="file://$PROJECT_DIR$/out/production/BankSystem/saidanov/bank/system/beans/client/Person.class" />
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/DepositCurrency.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/WrongAccountIdException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="55" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/database/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1255,57 +1292,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="43" column="71" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
           <folding>
-            <element signature="docComment;class#Deposit#0" expanded="false" />
-            <element signature="docComment;field#term#0;class#Deposit#0" expanded="false" />
-            <element signature="method#Deposit#0;class#Deposit#0" expanded="false" />
-            <element signature="method#equals#0;class#Deposit#0" expanded="false" />
-            <element signature="method#hashCode#0;class#Deposit#0" expanded="false" />
-            <element signature="method#toString#0;class#Deposit#0" expanded="false" />
-            <element signature="docComment;method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
-            <element signature="method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
-            <element signature="docComment;method#setTerm#0;class#Deposit#0" expanded="false" />
-            <element signature="method#setTerm#0;class#Deposit#0" expanded="false" />
-            <element signature="docComment;method#setDepositProfit#0;class#Deposit#0" expanded="false" />
-            <element signature="method#setDepositProfit#0;class#Deposit#0" expanded="false" />
-            <element signature="method#setPersentage#0;class#Deposit#0" expanded="false" />
-            <element signature="method#setCurrency#0;class#Deposit#0" expanded="false" />
+            <element signature="docComment;class#AccountFactory#0" expanded="false" />
+            <element signature="docComment;method#createAccount#0;class#AccountFactory#0" expanded="false" />
+            <element signature="docComment;method#createAccount#1;class#AccountFactory#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Account.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="794">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding>
-            <element signature="docComment;class#Account#0" expanded="false" />
-            <element signature="docComment;field#accountIdCounter#0;class#Account#0" expanded="false" />
-            <element signature="docComment;field#amountOfMoney#0;class#Account#0" expanded="false" />
-            <element signature="docComment;method#Account#0;class#Account#0" expanded="false" />
-            <element signature="method#Account#0;class#Account#0" expanded="false" />
-            <element signature="method#toString#0;class#Account#0" expanded="false" />
-            <element signature="method#equals#0;class#Account#0" expanded="false" />
-            <element signature="method#hashCode#0;class#Account#0" expanded="false" />
-            <element signature="method#setAmountOfMoney#0;class#Account#0" expanded="false" />
-            <element signature="method#setInitialContribution#0;class#Account#0" expanded="false" />
-            <element signature="method#getAccountById#0;class#Account#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/factory/ClientFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1328,44 +1319,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;field#accountIdCounter#0;class#Account#0" expanded="false" />
+            <element signature="docComment;field#amountOfMoney#0;class#Account#0" expanded="false" />
+            <element signature="docComment;method#Account#0;class#Account#0" expanded="false" />
+            <element signature="method#Account#0;class#Account#0" expanded="false" />
+            <element signature="method#toString#0;class#Account#0" expanded="false" />
+            <element signature="method#equals#0;class#Account#0" expanded="false" />
+            <element signature="method#hashCode#0;class#Account#0" expanded="false" />
+            <element signature="method#setAmountOfMoney#0;class#Account#0" expanded="false" />
+            <element signature="method#setInitialContribution#0;class#Account#0" expanded="false" />
+            <element signature="method#getAccountById#0;class#Account#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/BankSystemRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="69" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+        <state relative-caret-position="612">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1451#1515#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/WrongAccountIdException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/factory/ClientFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/database/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/NotEnoughMoneyException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/exceptions/TermCanNotRaiseException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Individual.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="46" column="9" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
           <folding>
             <element signature="docComment;class#Individual#0" expanded="false" />
             <element signature="docComment;field#happiness#0;class#Individual#0" expanded="false" />
             <element signature="docComment;method#Individual#0;class#Individual#0" expanded="false" />
             <element signature="method#Individual#0;class#Individual#0" expanded="false" />
-            <element signature="method#equals#0;class#Individual#0" expanded="false" />
             <element signature="method#hashCode#0;class#Individual#0" expanded="false" />
             <element signature="method#toString#0;class#Individual#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/beans/account/Deposit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="107" column="4" selection-start-line="107" selection-start-column="4" selection-end-line="107" selection-end-column="4" />
+          <folding>
+            <element signature="docComment;class#Deposit#0" expanded="false" />
+            <element signature="docComment;field#term#0;class#Deposit#0" expanded="false" />
+            <element signature="method#Deposit#0;class#Deposit#0" expanded="false" />
+            <element signature="method#hashCode#0;class#Deposit#0" expanded="false" />
+            <element signature="method#toString#0;class#Deposit#0" expanded="false" />
+            <element signature="docComment;method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
+            <element signature="method#setAmountOfMoney#0;class#Deposit#0" expanded="false" />
+            <element signature="docComment;method#setTerm#0;class#Deposit#0" expanded="false" />
+            <element signature="docComment;method#setDepositProfit#0;class#Deposit#0" expanded="false" />
+            <element signature="method#setPersentage#0;class#Deposit#0" expanded="false" />
+            <element signature="method#setCurrency#0;class#Deposit#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/LegalEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="61" column="52" selection-start-line="61" selection-start-column="52" selection-end-line="61" selection-end-column="52" />
+        <state relative-caret-position="197">
+          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="8" />
           <folding>
             <element signature="docComment;class#LegalEntity#0" expanded="false" />
             <element signature="docComment;field#totalInvestment#0;class#LegalEntity#0" expanded="false" />
             <element signature="docComment;method#LegalEntity#0;class#LegalEntity#0" expanded="false" />
             <element signature="method#LegalEntity#0;class#LegalEntity#0" expanded="false" />
             <element signature="method#toString#0;class#LegalEntity#0" expanded="false" />
-            <element signature="method#equals#0;class#LegalEntity#0" expanded="false" />
             <element signature="method#hashCode#0;class#LegalEntity#0" expanded="false" />
             <element signature="method#setTotalInvestment#0;class#LegalEntity#0" expanded="false" />
             <element signature="method#setTypeOfBusiness#0;class#LegalEntity#0" expanded="false" />
@@ -1375,29 +1452,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/saidanov/bank/system/domain/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-56">
-          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        <state relative-caret-position="574">
+          <caret line="137" column="8" selection-start-line="137" selection-start-column="8" selection-end-line="137" selection-end-column="8" />
           <folding>
             <element signature="docComment;class#Client#0" expanded="false" />
             <element signature="docComment;field#clientIdCounter#0;class#Client#0" expanded="false" />
             <element signature="method#equals#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#getClientById#0;class#Client#0" expanded="false" />
-            <element signature="method#getClientById#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#getAccountList#0;class#Client#0" expanded="false" />
-            <element signature="method#getAccountList#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#createAccount#0;class#Client#0" expanded="false" />
             <element signature="method#createAccount#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#createAccount#1;class#Client#0" expanded="false" />
             <element signature="docComment;method#takeMoney#0;class#Client#0" expanded="false" />
-            <element signature="method#takeMoney#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#putMoney#0;class#Client#0" expanded="false" />
-            <element signature="method#putMoney#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#accountBalanceCheck#0;class#Client#0" expanded="false" />
-            <element signature="method#accountBalanceCheck#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#allAccountsBalanceCheck#0;class#Client#0" expanded="false" />
-            <element signature="method#allAccountsBalanceCheck#0;class#Client#0" expanded="false" />
             <element signature="docComment;method#deleteAccount#0;class#Client#0" expanded="false" />
-            <element signature="method#deleteAccount#0;class#Client#0" expanded="false" />
           </folding>
         </state>
       </provider>

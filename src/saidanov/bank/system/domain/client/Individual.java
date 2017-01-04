@@ -1,6 +1,8 @@
 package saidanov.bank.system.domain.client;
 
 
+import saidanov.bank.system.exceptions.NotEnoughMoneyException;
+
 /**
  * Individual
  *
@@ -64,7 +66,7 @@ public class Individual extends Client {
     }
 
     @Override
-    public void takeMoney(int accountId, int money) {
+    public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
         super.takeMoney(accountId, money);
         happiness++;
     }

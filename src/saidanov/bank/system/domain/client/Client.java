@@ -100,17 +100,14 @@ public abstract class Client implements CreateAccount{
      * @param accountId unique accountId
      * @param money money that Client decided to take
      */
-    public void takeMoney(int accountId, int money) {
+    public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
         Account account = Database.listOfAccounts.get(accountId);
         int i = account.setAmountOfMoney(account.getAmountOfMoney() - money);
         if(i<0){
             account.setAmountOfMoney(account.getAmountOfMoney() + money);
-            try {
-                throw new NotEnoughMoneyException();
-            } catch (NotEnoughMoneyException e) {
-                System.out.println("Sorry, you do not have enough money." +
+                throw new NotEnoughMoneyException("Sorry, you do not have enough money." +
                         "Your amount of money in this account: " +  account.getAmountOfMoney());
-            }
+
         }
     }
 
@@ -136,11 +133,10 @@ public abstract class Client implements CreateAccount{
      * @return returns you amount of money that Client has on all his accounts*/
     public int allAccountsBalanceCheck(int clientId){
         List<Integer> list = getAccountList(clientId);
-        /**
-         * This int contains summ of Client's money from all Accounts*/
+        /**This int contains summ of Client's money from all Accounts*/
         int allMoney = 0;
-        for (int i = 0; i < list.size(); i++) {
-            Account account = Account.getAccountById(list.get(i));
+        for (Integer aList : list) {
+            Account account = Account.getAccountById(aList);
             allMoney += account.getAmountOfMoney();
         }
         return allMoney;

@@ -11,7 +11,8 @@ package saidanov.bank.system.exceptions;
  * but there is not enough money on that Account
  */
 public class NotEnoughMoneyException extends Exception {
-	public NotEnoughMoneyException() {
+	public NotEnoughMoneyException(String s) {
 		super();
+		System.out.println(s);
 	}
 }

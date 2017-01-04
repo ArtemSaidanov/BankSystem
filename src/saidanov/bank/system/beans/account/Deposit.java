@@ -93,14 +93,10 @@ public class Deposit extends Account {
     }
     /**
      * @param pastTerm it indicates how many months of the deposit remains*/
-    public void setTerm(int pastTerm) {
-        try{
-            if (pastTerm > this.term) throw new TermCanNotRaiseException();
+    public void setTerm(int pastTerm) throws TermCanNotRaiseException {
+            if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
             setDepositProfit(this.term - pastTerm, this.persentage);
             this.term = pastTerm;
-        }catch (TermCanNotRaiseException e){
-            System.out.println("You can't raise term of deposit. Term of deposit may only fall.");
-        }
     }
 
     public int getDepositProfit() {

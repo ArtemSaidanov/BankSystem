@@ -1,5 +1,7 @@
 package saidanov.bank.system.domain.client;
 
+import saidanov.bank.system.exceptions.NotEnoughMoneyException;
+
 /**
  * LegalEntity
  *
@@ -59,7 +61,7 @@ public class LegalEntity extends Client {
     }
 
     @Override
-    public void takeMoney(int accountId, int money) {
+    public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
         super.takeMoney(accountId, money);
         System.out.println("buisness Class");
         totalInvestment += money;
