@@ -1,12 +1,15 @@
 package saidanov.bank.system.domain.client;
 
-import saidanov.bank.system.beans.interfaces.CreateAccount;
+import saidanov.bank.system.beans.account.Deposit;
+import saidanov.bank.system.beans.interfaces.AccountChangeAbility;
 import saidanov.bank.system.domain.Manager;
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.beans.database.Database;
 import saidanov.bank.system.beans.DepositCurrency;
 import saidanov.bank.system.exceptions.NotEnoughMoneyException;
+import saidanov.bank.system.exceptions.TermCanNotRaiseException;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -21,11 +24,10 @@ import java.util.List;
  * <p>Client communicates with class Manager.</p>
  * <p>Client has basic methods to manage accounts</p>
  */
-public abstract class Client implements CreateAccount{
+public abstract class Client implements AccountChangeAbility {
 
     /**This counter ensures the uniqueness of each Client*/
     public static int clientIdCounter = 0;
-
     private int clientId;
 
     Client(int clientId) {
@@ -52,10 +54,6 @@ public abstract class Client implements CreateAccount{
         return clientId;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
     /**
      * This method returns you a Client object by clientId*/
     public static Client getClientById(int clientId){
@@ -64,7 +62,7 @@ public abstract class Client implements CreateAccount{
 
     /**
      * @return returns you all acountIds that Client has*/
-    public List<Integer> getAccountList(int clientId){
+    private List<Integer> getAccountList(int clientId){
         return Database.clientsAndAccounts.get(clientId);
     }
 
@@ -101,14 +99,7 @@ public abstract class Client implements CreateAccount{
      * @param money money that Client decided to take
      */
     public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
-        Account account = Database.listOfAccounts.get(accountId);
-        int i = account.setAmountOfMoney(account.getAmountOfMoney() - money);
-        if(i<0){
-            account.setAmountOfMoney(account.getAmountOfMoney() + money);
-                throw new NotEnoughMoneyException("Sorry, you do not have enough money." +
-                        "Your amount of money in this account: " +  account.getAmountOfMoney());
-
-        }
+      new Manager().takeMoney(accountId,money);
     }
 
     /**
@@ -116,8 +107,7 @@ public abstract class Client implements CreateAccount{
      * @param accountId unique accountId
      * @param money money that Client decided to take*/
     public void putMoney(int accountId, int money) {
-        Account account = Database.listOfAccounts.get(accountId);
-        account.setAmountOfMoney(account.getAmountOfMoney() + money);
+        new Manager().putMoney(accountId, money);
     }
 
     /**
@@ -143,8 +133,15 @@ public abstract class Client implements CreateAccount{
     }
 
     /**This method is not ready yet*/
-    public void deleteAccount(int clientId, int accountId) {
-        //TODO
+    public void deleteAccount(int accountId) throws IOException{
+        new Manager().deleteAccount(accountId);
+    }
+
+    /**This method allows Client to set term of his deposit*/
+    public void setTerm(Account account, int pastTerm) throws IOException, TermCanNotRaiseException{
+        if (! (account instanceof Deposit)){
+            throw new IllegalArgumentException("This Account is not Deposit and do not have term");
+        }else new Manager().setTerm(account, pastTerm);
     }
 }
 

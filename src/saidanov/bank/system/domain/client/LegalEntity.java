@@ -14,7 +14,6 @@ import saidanov.bank.system.exceptions.NotEnoughMoneyException;
 public class LegalEntity extends Client {
 
     private String typeOfBusiness;
-
     private String responsiblePersonName;
 
     /**This field was added only to demonstrate the power of polymorphism*/
@@ -63,7 +62,6 @@ public class LegalEntity extends Client {
     @Override
     public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
         super.takeMoney(accountId, money);
-        System.out.println("buisness Class");
         totalInvestment += money;
     }
 

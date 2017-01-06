@@ -1,7 +1,10 @@
 package saidanov.bank.system.beans.account;
 
 import saidanov.bank.system.beans.DepositCurrency;
+import saidanov.bank.system.beans.fileworking.AccountFile;
 import saidanov.bank.system.exceptions.TermCanNotRaiseException;
+
+import java.io.IOException;
 
 /**
  * Deposit
@@ -93,10 +96,11 @@ public class Deposit extends Account {
     }
     /**
      * @param pastTerm it indicates how many months of the deposit remains*/
-    public void setTerm(int pastTerm) throws TermCanNotRaiseException {
-            if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
-            setDepositProfit(this.term - pastTerm, this.persentage);
-            this.term = pastTerm;
+    public void setTerm(int pastTerm) throws TermCanNotRaiseException, IOException {
+        if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
+        setDepositProfit(this.term - pastTerm, this.persentage);
+        this.term = pastTerm;
+        new AccountFile().changeTerm(this.getAccountId(), pastTerm, depositProfit);
     }
 
     public int getDepositProfit() {

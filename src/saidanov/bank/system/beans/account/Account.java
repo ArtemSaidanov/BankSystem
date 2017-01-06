@@ -1,6 +1,8 @@
 package saidanov.bank.system.beans.account;
 
+import saidanov.bank.system.beans.Validator;
 import saidanov.bank.system.beans.database.Database;
+import saidanov.bank.system.exceptions.WrongAccountIdException;
 
 /**
  * Account
@@ -16,7 +18,7 @@ public class Account {
     /**This counter ensures the uniqueness of each Account*/
     public static int accountIdCounter = 0;
 
-    public int accountId;
+    protected int accountId;
 
     private int clientId;
 
@@ -24,7 +26,7 @@ public class Account {
 
     /**amountOfMoney will raise if Client decided to put money into the Account, and will fall if Client decided to take money from account.
      * At the time of account creation amountOfMoney == initial contribution*/
-    public int amountOfMoney;
+    protected int amountOfMoney;
 
     /**
      * Constructor of Account
@@ -37,6 +39,15 @@ public class Account {
         this.initialContribution = initialContribution;
         this.amountOfMoney = initialContribution;
         this.clientId = clientId;
+    }
+
+    public static Account getAccountById(int accountId) {
+        try {
+            Validator.accountIDValidation(accountId);
+        } catch (WrongAccountIdException e) {
+            e.printStackTrace();
+        }
+        return (Account) Database.listOfAccounts.get(accountId);
     }
 
     @Override
@@ -100,10 +111,6 @@ public class Account {
 
     public void setInitialContribution(int initialContribution) {
         this.initialContribution = initialContribution;
-    }
-
-    public static Account getAccountById(int accountId){
-        return Database.listOfAccounts.get(accountId);
     }
 
 }

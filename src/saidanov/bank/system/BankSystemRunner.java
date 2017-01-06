@@ -4,12 +4,11 @@ import saidanov.bank.system.beans.DepositCurrency;
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.beans.account.Deposit;
 import saidanov.bank.system.domain.client.Client;
-import saidanov.bank.system.beans.database.Database;
 import saidanov.bank.system.domain.factory.ClientFactory;
 import saidanov.bank.system.exceptions.NotEnoughMoneyException;
 import saidanov.bank.system.exceptions.TermCanNotRaiseException;
 
-import java.util.List;
+import java.io.IOException;
 
 
 /**
@@ -20,48 +19,32 @@ public class BankSystemRunner {
     public static void main(String[] args) {
         //TODO
         Client client = ClientFactory.createClient("Andrew", "Brown", 22);
-        Client client1 = ClientFactory.createClient("Ax", "Dax", 22);
-        System.out.println(client.getClientId());
-
-        client.createAccount(client.getClientId(),500, 12, 5, DepositCurrency.USD);
-        client.createAccount(client.getClientId(),1000, 12, 5, DepositCurrency.USD);
-        client1.createAccount(client1.getClientId(),750, 12, 5, DepositCurrency.USD);
-        client.createAccount(client.getClientId(), 600, 12, 5, DepositCurrency.USD);
-        client1.createAccount(client1.getClientId(),200, 12, 5, DepositCurrency.USD);
-        client.createAccount(client.getClientId(), 100, 12, 5, DepositCurrency.USD);
-        System.out.println(client.getClientId());
-
-        List<Integer> list = Database.clientsAndAccounts.get(client.getClientId());
-        System.out.println(list);
-
-        System.out.println(client.allAccountsBalanceCheck(client.getClientId()));
-
-        Account account = Account.getAccountById(list.get(0));
-        Deposit deposit = (Deposit) account;
-        System.out.println(account);
-
+        client.createAccount(client.getClientId(),250);
+        client.createAccount(client.getClientId(),1000,10,10.0,DepositCurrency.USD);
+        client.createAccount(client.getClientId(),150);
         try {
-            deposit.setTerm(11000);
-        } catch (TermCanNotRaiseException e) {
+            Thread.sleep(1000);
+
+            client.takeMoney(0,100);
+
+            Thread.sleep(1000);
+
+            client.setTerm(Account.getAccountById(1), 4);
+
+            Deposit deposit = (Deposit) Account.getAccountById(1);
+            System.out.println(Account.getAccountById(1).getAmountOfMoney() + " " + deposit.getTerm() + " "+  deposit.getDepositProfit());
+
+            Thread.sleep(1000);
+
+            client.takeMoney(1, 500);
+            System.out.println(Account.getAccountById(1).getAmountOfMoney() + " " + deposit.getTerm() + " " + deposit.getDepositProfit());
+
+            Thread.sleep(1000);
+
+            client.deleteAccount(1);
+        } catch (InterruptedException | TermCanNotRaiseException | IOException | NotEnoughMoneyException e) {
             e.printStackTrace();
         }
-        System.out.println("Profit after one month  " + deposit.getDepositProfit());
-
-        try {
-            client.takeMoney(0, 250);
-        } catch (NotEnoughMoneyException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Profit after takeMoney  " + deposit.getDepositProfit());
-
-//        deposit.setTerm(5);
-//        System.out.println(deposit.getDepositProfit());
-//        System.out.println(account.getAmountOfMoney());
-//
-//
-//        client.putMoney(0, 251);
-//        System.out.println(account.getAmountOfMoney());
 
     }
 }

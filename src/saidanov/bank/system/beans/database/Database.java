@@ -1,5 +1,6 @@
 package saidanov.bank.system.beans.database;
 
+import saidanov.bank.system.beans.CustomArrayList;
 import saidanov.bank.system.beans.account.Account;
 import saidanov.bank.system.domain.client.Client;
 
@@ -25,7 +26,7 @@ public final class Database {
 
     /**
      * This list contains all Accounts*/
-    public static List<Account> listOfAccounts = new ArrayList<>();
+    public static CustomArrayList<Account> listOfAccounts = new CustomArrayList<>();
 
     /**
      * This Map contains ClientId and list of his accounts ids*/
