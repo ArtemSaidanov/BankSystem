@@ -78,7 +78,8 @@ public class Deposit extends Account {
      * This method changes amount of money on Client deposit.
      * <p>And if Client takes money before the term of deposit left,
      * Client stills a half of his profit</p>
-     * @param amountOfMoney after performing operations*/
+     * @param amountOfMoney after performing operations
+     * */
     @Override
     public int setAmountOfMoney(int amountOfMoney) {
         int oldBalance = super.getAmountOfMoney();
@@ -95,7 +96,8 @@ public class Deposit extends Account {
         return term;
     }
     /**
-     * @param pastTerm it indicates how many months of the deposit remains*/
+     * @param pastTerm it indicates how many months of the deposit remains
+     */
     public void setTerm(int pastTerm) throws TermCanNotRaiseException, IOException {
         if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
         setDepositProfit(this.term - pastTerm, this.persentage);
@@ -108,7 +110,8 @@ public class Deposit extends Account {
     }
     /**
      * This method set profit from deposit for the number of past months
-     * @param termLeft it indicates how many months of the deposit left*/
+     * @param termLeft it indicates how many months of the deposit left
+     */
     public void setDepositProfit(int termLeft, double persentage) {
         int monthProfit = (int) (getAmountOfMoney()/100 * persentage);
         this.depositProfit = this.depositProfit + (termLeft * monthProfit);
@@ -123,9 +126,6 @@ public class Deposit extends Account {
 
     public DepositCurrency getCurrency() {
         return currency;
-    }
-    public void setCurrency(DepositCurrency currency) {
-        this.currency = currency;
     }
 
     public int getAccountId() {

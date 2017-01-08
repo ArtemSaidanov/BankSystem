@@ -15,8 +15,6 @@ public class LegalEntity extends Client {
 
     private String typeOfBusiness;
     private String responsiblePersonName;
-
-    /**This field was added only to demonstrate the power of polymorphism*/
     private int totalInvestment;
 
     /**

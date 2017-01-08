@@ -13,6 +13,8 @@ import saidanov.bank.system.exceptions.WrongAccountIdException;
  */
 public class Validator {
 
+    /**
+     * This method ensures that account ID won't be < 0*/
 	public static void accountIDValidation(int accountID) throws WrongAccountIdException{
 		if (accountID < 0){
 			throw new WrongAccountIdException("Account ID can't be < 0");

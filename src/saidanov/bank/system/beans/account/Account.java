@@ -33,7 +33,7 @@ public class Account {
      * @param accountId unique Account id
      * @param clientId unique Client id
      * @param initialContribution is the amount of money that Client put into the account at first time
-     * */
+     */
     public Account(int clientId, int initialContribution, int accountId) {
         this.accountId = accountId;
         this.initialContribution = initialContribution;
@@ -101,16 +101,7 @@ public class Account {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
     public int getInitialContribution() {
         return initialContribution;
     }
-
-    public void setInitialContribution(int initialContribution) {
-        this.initialContribution = initialContribution;
-    }
-
 }

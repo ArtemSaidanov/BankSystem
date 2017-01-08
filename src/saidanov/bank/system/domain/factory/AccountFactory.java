@@ -24,7 +24,7 @@ public final class AccountFactory{
      * @param clientId unique id of Client
      * @param initialContribution is the amount of money that Client put into the account at first time
      * @return new Account
-     * */
+     */
     public Account createAccount(int clientId, int initialContribution,
                                         int accountId) {
         Account account = new Account(clientId,initialContribution,accountId);
@@ -40,7 +40,7 @@ public final class AccountFactory{
      * @param term the amount of months which the deposit will be kept in the bank
      * @param persentage amount of interest that the client will receive per months
      * @return new Deposit
-     * */
+     */
     public Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency usd, int accountId){
         Account account = new Deposit(clientId, initialContribution, term,
                 persentage,usd,accountId);

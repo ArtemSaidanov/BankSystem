@@ -18,7 +18,8 @@ public final class DatabaseHelper {
 
     /**
      * This method adds unique clientId and list of client account ids
-     * to the Map in database*/
+     * to the Map in database*
+     */
     public static void addToDatabase(int clientId){
         List<Integer> list;
         try {

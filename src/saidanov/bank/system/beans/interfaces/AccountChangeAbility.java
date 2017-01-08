@@ -23,7 +23,7 @@ public interface AccountChangeAbility {
 	 * <p>Manager calls AccountFactory to create an account</p>
 	 * @param clientId unique id of Client
 	 * @param initialContribution is the amount of money that Client put into the account at first time
-	 * */
+	 */
 	Account createAccount(int clientId,int initialContribution);
 
 	/**
@@ -33,7 +33,7 @@ public interface AccountChangeAbility {
 	 * @param initialContribution is the amount of money that Client put into the account at first time
 	 * @param term the amount of months which the deposit will be kept in the bank
 	 * @param persentage amount of interest that the client will receive per months
-	 * */
+	 */
 	Account createAccount(int clientId, int initialContribution, int term,
 						  double persentage, DepositCurrency currency);
 
@@ -48,10 +48,17 @@ public interface AccountChangeAbility {
 	 * This method puts money into the account
 	 * @param accountId unique accountId
 	 * @param money money that Client decided to take
-	 * */
+	 */
 	void putMoney(int accountId, int money);
 
+	/**
+     * This method deletes account by ID
+     */
 	void deleteAccount(int accountId) throws IOException;
 
+    /**
+     * This method changes term of deposit
+     * @param pastTerm it indicates how many months of the deposit remains
+     */
 	void setTerm(Account account, int pastTerm) throws IOException, TermCanNotRaiseException;
 }

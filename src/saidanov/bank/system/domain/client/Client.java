@@ -55,13 +55,15 @@ public abstract class Client implements AccountChangeAbility {
     }
 
     /**
-     * This method returns you a Client object by clientId*/
+     * This method returns you a Client object by clientId
+     */
     public static Client getClientById(int clientId){
       return Database.listOfClients.get(clientId);
     }
 
     /**
-     * @return returns you all acountIds that Client has*/
+     * @return returns you all acountIds that Client has
+     */
     private List<Integer> getAccountList(int clientId){
         return Database.clientsAndAccounts.get(clientId);
     }
@@ -120,7 +122,8 @@ public abstract class Client implements AccountChangeAbility {
 
     /**
      * @param clientId unique clientId
-     * @return returns you amount of money that Client has on all his accounts*/
+     * @return returns you amount of money that Client has on all his accounts
+     */
     public int allAccountsBalanceCheck(int clientId){
         List<Integer> list = getAccountList(clientId);
         /**This int contains summ of Client's money from all Accounts*/
@@ -132,7 +135,9 @@ public abstract class Client implements AccountChangeAbility {
         return allMoney;
     }
 
-    /**This method is not ready yet*/
+    /**
+     * This method deletes account by ID
+     */
     public void deleteAccount(int accountId) throws IOException{
         new Manager().deleteAccount(accountId);
     }
