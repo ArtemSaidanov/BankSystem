@@ -1,5 +1,8 @@
 package by.saidanov.bank;
 
+import by.saidanov.bank.utility.serialization.Deserialization;
+import by.saidanov.bank.utility.serialization.Serialization;
+
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -12,9 +15,8 @@ import java.util.Set;
  */
 public class Test {
     public static void main(String[] args) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm, dd.MM.yyyy");
 
-        System.out.println(sdf.format(new GregorianCalendar().getTime()));
-
+        String f= "dsad";
+        int i = Integer.parseInt(f);
     }
 }

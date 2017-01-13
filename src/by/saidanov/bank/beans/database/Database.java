@@ -1,4 +1,4 @@
-package by.saidanov.bank.utility.database;
+package by.saidanov.bank.beans.database;
 
 import by.saidanov.bank.utility.CustomArrayList;
 import by.saidanov.bank.beans.account.Account;

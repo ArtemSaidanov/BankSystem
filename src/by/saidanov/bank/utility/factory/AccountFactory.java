@@ -1,9 +1,14 @@
 package by.saidanov.bank.utility.factory;
 
-import by.saidanov.bank.utility.database.Database;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
 import by.saidanov.bank.beans.DepositCurrency;
+import by.saidanov.bank.beans.database.DatabaseHelper;
+import by.saidanov.bank.utility.io.AccountIO;
+import by.saidanov.bank.utility.io.ClientIO;
+
+import java.io.IOException;
 
 /**
  * AccountFactory
@@ -27,7 +32,20 @@ public final class AccountFactory{
      */
     public static Account createAccount(int clientId, int initialContribution,
                                         int accountId) {
+        if (Database.listOfAccounts.size() != 0){
+            accountId = Database.listOfAccounts.size();
+        }
         Account account = new Account(clientId,initialContribution,accountId);
+        DatabaseHelper.addToDatabase(clientId, accountId);
+        try {
+            AccountIO accountIO = new AccountIO();
+            accountIO.addToFile(account);
+            ClientIO clientIO = new ClientIO();
+            clientIO.addAccountToClientFile(clientId, account.getAccountId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Account.accountIdCounter++;
         Database.listOfAccounts.add(account);
         return account;
     }
@@ -41,9 +59,22 @@ public final class AccountFactory{
      * @param persentage amount of interest that the client will receive per months
      * @return new Deposit
      */
-    public static Account createAccount(int clientId, int initialContribution, int term, double persentage, DepositCurrency usd, int accountId){
-        Account account = new Deposit(clientId, initialContribution, term,
-                persentage,usd,accountId);
+    public static Account createAccount(int clientId, int initialContribution, int term, double persentage,
+                                        DepositCurrency usd, int accountId){
+        if (Database.listOfAccounts.size() != 0){
+            accountId = Database.listOfAccounts.size();
+        }
+        Account account = new Deposit(clientId, initialContribution, term, persentage,usd,accountId);
+        DatabaseHelper.addToDatabase(clientId, accountId);
+        try {
+            AccountIO accountIO = new AccountIO();
+            accountIO.addToFile(account);
+            ClientIO clientIO = new ClientIO();
+            clientIO.addAccountToClientFile(clientId, account.getAccountId());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Account.accountIdCounter++;
         Database.listOfAccounts.add(account);
         return account;
     }

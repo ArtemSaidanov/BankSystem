@@ -1,7 +1,7 @@
 package by.saidanov.bank.beans.client;
 
-
 import by.saidanov.bank.exceptions.NotEnoughMoneyException;
+import java.util.GregorianCalendar;
 
 /**
  * Individual
@@ -19,6 +19,7 @@ public class Individual extends Client {
     private int age;
     private int happiness;
 
+
     /**
      * <p>Constructor of Individual class</p>
      * @param clientId unique clients id
@@ -26,11 +27,12 @@ public class Individual extends Client {
      * @param surname surname of Individual
      * @param age age of Individual
      */
-    public Individual(int clientId, String name, String surname, int age) {
-        super(clientId);
+    public Individual(int clientId, String name, String surname, int age, GregorianCalendar gregorianCalendar) {
+        super(clientId, gregorianCalendar);
         this.name = name;
         this.surname = surname;
         this.age = age;
+
     }
 
     @Override
@@ -61,7 +63,7 @@ public class Individual extends Client {
     @Override
     public String toString() {
         return "clientId " + this.getClientId() + "; Individual -" +
-                " Name: " + name + "; Surname: " + surname + "; Age: " + age;
+                " Name: " + name + "; Surname: " + surname + "; Age: " + age + "; Date of registration: " + getDateOfRegistration();
     }
 
     @Override

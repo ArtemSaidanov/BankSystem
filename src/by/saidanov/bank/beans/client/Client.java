@@ -2,7 +2,7 @@ package by.saidanov.bank.beans.client;
 
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
-import by.saidanov.bank.utility.database.Database;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.beans.interfaces.AccountChangeAbility;
 import by.saidanov.bank.exceptions.NotEnoughMoneyException;
 import by.saidanov.bank.beans.Manager;
@@ -11,6 +11,8 @@ import by.saidanov.bank.exceptions.TermCanNotRaiseException;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -30,10 +32,23 @@ public abstract class Client implements AccountChangeAbility, Serializable {
 
     /**This counter ensures the uniqueness of each Client*/
     public static int clientIdCounter = 0;
+
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm, dd.MM.yyyy");
+    private String dateOfRegistration;
+
+    public String getDateOfRegistration() {
+        return dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(String dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
+    }
+
     private int clientId;
 
-    Client(int clientId) {
+    Client(int clientId, GregorianCalendar gregorianCalendar) {
         this.clientId = clientId;
+        this.dateOfRegistration = sdf.format(gregorianCalendar.getTime());
     }
 
     @Override
@@ -66,7 +81,7 @@ public abstract class Client implements AccountChangeAbility, Serializable {
     /**
      * @return returns you all acountIds that Client has
      */
-    private List<Integer> getAccountList(int clientId){
+    public List<Integer> getAccountList(int clientId){
         return Database.clientsAndAccounts.get(clientId);
     }
 
@@ -121,10 +136,9 @@ public abstract class Client implements AccountChangeAbility, Serializable {
     }
 
     /**
-     * @param clientId unique clientId
      * @return returns you amount of money that Client has on all his accounts
      */
-    public int allAccountsBalanceCheck(int clientId){
+    public int allAccountsBalanceCheck(){
         List<Integer> list = getAccountList(clientId);
         /**This int contains summ of Client's money from all Accounts*/
         int allMoney = 0;

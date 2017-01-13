@@ -1,6 +1,10 @@
 package by.saidanov.bank.utility;
 
+import by.saidanov.bank.beans.account.Account;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.exceptions.WrongAccountIdException;
+
+import java.io.*;
 
 /**
  * Validator
@@ -13,13 +17,14 @@ import by.saidanov.bank.exceptions.WrongAccountIdException;
  */
 public class Validator {
 
+    private final static String accountFilePath = "AccountIO.txt";
+
     /**
-     * This method ensures that account ID won't be < 0*/
-	public static void accountIDValidation(int accountID) throws WrongAccountIdException{
-		if (accountID < 0){
-			throw new WrongAccountIdException("Account ID can't be < 0");
-		}
-	}
-
-
+     * This method ensures that account ID won't be < 0
+     */
+    public static void accountIDValidation(int accountID) throws WrongAccountIdException {
+        if (accountID < 0) {
+            throw new WrongAccountIdException("Account ID can't be < 0");
+        }
+    }
 }

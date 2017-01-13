@@ -1,6 +1,6 @@
 package by.saidanov.bank.beans.account;
 
-import by.saidanov.bank.utility.database.Database;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.utility.Validator;
 import by.saidanov.bank.exceptions.WrongAccountIdException;
 
@@ -56,7 +56,8 @@ public class Account implements Comparable<Account>, Serializable{
     public String toString() {
         return "Account : " + accountId
                 + "; clientId " + clientId
-                + "; initialContribution :" + initialContribution;
+                + "; initialContribution : " + initialContribution
+                + "; amountOfMoney : " + amountOfMoney;
     }
 
 

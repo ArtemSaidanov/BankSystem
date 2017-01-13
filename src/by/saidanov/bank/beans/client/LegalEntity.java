@@ -2,6 +2,8 @@ package by.saidanov.bank.beans.client;
 
 import by.saidanov.bank.exceptions.NotEnoughMoneyException;
 
+import java.util.GregorianCalendar;
+
 /**
  * LegalEntity
  *
@@ -23,8 +25,8 @@ public class LegalEntity extends Client {
      * @param typeOfBusiness the type of business activity
      * @param responsiblePersonName person communicating with the manager
      */
-    public LegalEntity(int clientId, String typeOfBusiness, String responsiblePersonName) {
-        super(clientId);
+    public LegalEntity(int clientId, String typeOfBusiness, String responsiblePersonName, GregorianCalendar gregorianCalendar) {
+        super(clientId, gregorianCalendar);
         this.typeOfBusiness = typeOfBusiness;
         this.responsiblePersonName = responsiblePersonName;
     }
@@ -32,7 +34,7 @@ public class LegalEntity extends Client {
     @Override
     public String toString() {
         return "clientId " + this.getClientId() + "; LegalEntity -" +
-                " TypeOfBusiness: " + typeOfBusiness + "; BossName: " + responsiblePersonName;
+                " TypeOfBusiness: " + typeOfBusiness + "; BossName: " + responsiblePersonName + "; Date of registration: " + getDateOfRegistration();
     }
     @Override
     public boolean equals(Object o) {

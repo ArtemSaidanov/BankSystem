@@ -11,4 +11,5 @@ package by.saidanov.bank.beans;
  */
 public enum DepositCurrency {
     USD,EUR,RUB
+
 }

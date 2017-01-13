@@ -1,12 +1,13 @@
 package by.saidanov.bank.utility.factory;
 
-import by.saidanov.bank.utility.database.Database;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.utility.io.ClientIO;
 import by.saidanov.bank.beans.client.Individual;
 import by.saidanov.bank.beans.client.LegalEntity;
 import by.saidanov.bank.beans.client.Client;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
 
 /**
  * ClientFactory
@@ -22,9 +23,12 @@ public final class ClientFactory {
     /**
      * This method creates Individual
      */
-    public static Client createClient(String name, String surname, int age) {
+    public static Client createClient(String name, String surname, int age, GregorianCalendar gregorianCalendar) {
         int clientId = Client.clientIdCounter++;
-        Client client = new Individual(clientId, name, surname, age);
+        if (Database.listOfClients.size() != 0){
+            clientId = Database.listOfClients.size();
+        }
+        Client client = new Individual(clientId, name, surname, age, gregorianCalendar);
         try {
             ClientIO clientIO = new ClientIO();
             clientIO.addClientToFile(client);
@@ -38,9 +42,12 @@ public final class ClientFactory {
     /**
      * This method creates LegalEntity
      */
-    public static Client createClient(String typeOfBusiness, String bossName){
+    public static Client createClient(String typeOfBusiness, String bossName, GregorianCalendar gregorianCalendar){
         int clientId = Client.clientIdCounter++;
-        Client client = new LegalEntity(clientId, typeOfBusiness, bossName);
+        if (Database.listOfClients.size() != 0){
+            clientId = Database.listOfClients.size();
+        }
+        Client client = new LegalEntity(clientId, typeOfBusiness, bossName, gregorianCalendar);
         try {
             ClientIO clientIO = new ClientIO();
             clientIO.addClientToFile(client);

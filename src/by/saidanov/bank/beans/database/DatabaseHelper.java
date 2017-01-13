@@ -1,4 +1,4 @@
-package by.saidanov.bank.utility.database;
+package by.saidanov.bank.beans.database;
 
 import by.saidanov.bank.beans.account.Account;
 
@@ -20,14 +20,14 @@ public final class DatabaseHelper {
      * This method adds unique clientId and list of client account ids
      * to the Map in database*
      */
-    public static void addToDatabase(int clientId){
+    public static void addToDatabase(int clientId, int accountId){
         List<Integer> list;
         try {
             list = Database.clientsAndAccounts.get(clientId);
-            list.add(Account.accountIdCounter);
+            list.add(accountId);
         }catch (NullPointerException e){
             list = new ArrayList<>();
-            list.add(Account.accountIdCounter);
+            list.add(accountId);
         }
         Database.clientsAndAccounts.put(clientId, list);
     }

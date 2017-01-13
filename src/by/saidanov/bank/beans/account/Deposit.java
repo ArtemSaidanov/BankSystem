@@ -62,12 +62,14 @@ public class Deposit extends Account {
 
     @Override
     public String toString() {
-        return "Account : " + accountId
+        return "Deposit : " + accountId
                 + "; clientId " + super.getClientId()
                 + "; initialContribution : " + super.getInitialContribution()
                 + "; term : " + term
                 + "; persentage : " + persentage
-                + "; currency : " + currency;
+                + "; currency : " + currency
+                + "; depositProfit : " + depositProfit
+                + "; amountOfMoney : " + amountOfMoney;
     }
 
     @Override
@@ -100,7 +102,9 @@ public class Deposit extends Account {
      */
     public void setTerm(int pastTerm) throws TermCanNotRaiseException, IOException {
         if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
+        int oldProfit = depositProfit;
         setDepositProfit(this.term - pastTerm, this.persentage);
+        setAmountOfMoney(getAmountOfMoney() + (depositProfit - oldProfit));
         this.term = pastTerm;
         new AccountIO().changeTerm(this.getAccountId(), pastTerm, depositProfit);
     }
@@ -113,15 +117,12 @@ public class Deposit extends Account {
      * @param termLeft it indicates how many months of the deposit left
      */
     public void setDepositProfit(int termLeft, double persentage) {
-        int monthProfit = (int) (getAmountOfMoney()/100 * persentage);
+        int monthProfit = (int) (getInitialContribution()/100 * persentage);
         this.depositProfit = this.depositProfit + (termLeft * monthProfit);
     }
 
     public double getPersentage() {
         return persentage;
-    }
-    public void setPersentage(double persentage) {
-        this.persentage = persentage;
     }
 
     public DepositCurrency getCurrency() {

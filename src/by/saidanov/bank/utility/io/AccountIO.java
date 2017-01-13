@@ -3,6 +3,7 @@ package by.saidanov.bank.utility.io;
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
 import by.saidanov.bank.beans.interfaces.FileChangeAbility;
+import by.saidanov.bank.utility.Validator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class AccountIO implements FileChangeAbility {
 
-	private String accountFilePath = "AccountIO.txt";
+	private final String accountFilePath = "AccountIO.txt";
 
 	/**
 	 * This method adds new Account to File

@@ -1,7 +1,7 @@
 package by.saidanov.bank.utility.io;
 
 
-import by.saidanov.bank.utility.database.Database;
+import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.beans.client.Client;
 import by.saidanov.bank.beans.client.Individual;
 import by.saidanov.bank.beans.client.LegalEntity;
