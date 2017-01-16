@@ -5,6 +5,7 @@ import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
 import by.saidanov.bank.beans.DepositCurrency;
 import by.saidanov.bank.beans.database.DatabaseHelper;
+import by.saidanov.bank.utility.Validator;
 import by.saidanov.bank.utility.io.AccountIO;
 import by.saidanov.bank.utility.io.ClientIO;
 
@@ -17,11 +18,9 @@ import java.io.IOException;
  *
  * Date 26.12.2016
  *
- * <p>AccountFactory creates accounts.</p>
- * <p>AccountFactory communicates only with Manager.</p>
+ * AccountFactory creates accounts.
  */
 public final class AccountFactory{
-
 
     /**
      * <p>Method for creating an Account</p>
@@ -35,16 +34,14 @@ public final class AccountFactory{
         if (Database.listOfAccounts.size() != 0){
             accountId = Database.listOfAccounts.size();
         }
-        Account account = new Account(clientId,initialContribution,accountId);
-        DatabaseHelper.addToDatabase(clientId, accountId);
         try {
-            AccountIO accountIO = new AccountIO();
-            accountIO.addToFile(account);
-            ClientIO clientIO = new ClientIO();
-            clientIO.addAccountToClientFile(clientId, account.getAccountId());
+            accountId = Validator.accountInFileValidation(accountId);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Account account = new Account(clientId,initialContribution,accountId);
+        DatabaseHelper.addToDatabase(clientId, accountId);
+        addToFile(clientId, account);
         Account.accountIdCounter++;
         Database.listOfAccounts.add(account);
         return account;
@@ -64,8 +61,25 @@ public final class AccountFactory{
         if (Database.listOfAccounts.size() != 0){
             accountId = Database.listOfAccounts.size();
         }
+        try {
+            accountId = Validator.accountInFileValidation(accountId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Account account = new Deposit(clientId, initialContribution, term, persentage,usd,accountId);
         DatabaseHelper.addToDatabase(clientId, accountId);
+        addToFile(clientId, account);
+        Account.accountIdCounter++;
+        Database.listOfAccounts.add(account);
+        return account;
+    }
+
+    /**
+     * This method adds account to account file, and changes client's list of accounts in client file
+     * @param clientId unique id of Client
+     * @param account this account will be added to file
+     */
+    private static void addToFile(int clientId, Account account) {
         try {
             AccountIO accountIO = new AccountIO();
             accountIO.addToFile(account);
@@ -74,8 +88,5 @@ public final class AccountFactory{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Account.accountIdCounter++;
-        Database.listOfAccounts.add(account);
-        return account;
     }
 }

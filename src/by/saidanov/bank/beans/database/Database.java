@@ -26,7 +26,7 @@ public final class Database {
 
     /**
      * This list contains all Accounts*/
-    public static CustomArrayList<Account> listOfAccounts = new CustomArrayList<>();
+    public static List<Account> listOfAccounts = new CustomArrayList<>();
 
     /**
      * This Map contains ClientId and list of his accounts ids*/

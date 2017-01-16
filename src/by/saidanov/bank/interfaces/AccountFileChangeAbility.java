@@ -1,11 +1,11 @@
-package by.saidanov.bank.beans.interfaces;
+package by.saidanov.bank.interfaces;
 
 import by.saidanov.bank.beans.account.Account;
 
 import java.io.IOException;
 
 /**
- * FileChangeAbility
+ * AccountFileChangeAbility
  *
  * @version 1.0
  *
@@ -13,7 +13,7 @@ import java.io.IOException;
  *
  * This interface has methods to work with files
  */
-public interface FileChangeAbility {
+public interface AccountFileChangeAbility {
 
 	/**
 	 * This method adds new Account to File

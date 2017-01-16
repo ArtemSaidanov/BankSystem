@@ -1,7 +1,6 @@
-package by.saidanov.bank.beans.interfaces;
+package by.saidanov.bank.interfaces;
 
 import by.saidanov.bank.exceptions.NotEnoughMoneyException;
-import by.saidanov.bank.beans.DepositCurrency;
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.exceptions.TermCanNotRaiseException;
 
@@ -18,22 +17,24 @@ import java.io.IOException;
  */
 public interface AccountChangeAbility {
 
-	/**
-	 * <p>Method allows the Client to take money from his account</p>
-	 * @param accountId unique accountId
-	 * @param money money that Client decided to take
-	 */
+    /**
+     * <p>Method allows the Client to take money from his account</p>
+     * @param accountId unique accountId
+     * @param money money that Client decided to take
+     * @throws NotEnoughMoneyException when Client decided to take more money that he has on his account
+     */
 	void takeMoney(int accountId, int money) throws NotEnoughMoneyException;
 
-	/**
-	 * This method puts money into the account
-	 * @param accountId unique accountId
-	 * @param money money that Client decided to take
-	 */
+    /**
+     * This method puts money into the account
+     * @param accountId unique accountId
+     * @param money money that Client decided to take*
+     */
 	void putMoney(int accountId, int money);
 
 	/**
      * This method deletes account by ID
+     * @param accountId unique accountId
      */
 	void deleteAccount(int accountId) throws IOException;
 

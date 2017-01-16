@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public class CustomArrayList <A> extends ArrayList {
 
+    /**This method forbids getting accounts with id < 0*/
 	@Override
 	public Object get(int index) throws IllegalArgumentException{
 		if (super.get(index) instanceof Account){

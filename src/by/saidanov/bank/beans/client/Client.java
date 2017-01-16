@@ -3,7 +3,7 @@ package by.saidanov.bank.beans.client;
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
 import by.saidanov.bank.beans.database.Database;
-import by.saidanov.bank.beans.interfaces.AccountChangeAbility;
+import by.saidanov.bank.interfaces.AccountChangeAbility;
 import by.saidanov.bank.exceptions.NotEnoughMoneyException;
 import by.saidanov.bank.beans.Manager;
 import by.saidanov.bank.beans.DepositCurrency;
@@ -26,27 +26,28 @@ import java.util.TreeSet;
  *
  * <p>This class is the base class of Individual and LegalEntity.</p>
  * <p>Client communicates with class Manager.</p>
- * <p>Client has basic methods to manage accounts</p>
  */
 public abstract class Client implements AccountChangeAbility, Serializable {
 
     /**This counter ensures the uniqueness of each Client*/
     public static int clientIdCounter = 0;
 
+    public static final long serialVersionUID = 1;
+
     private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm, dd.MM.yyyy");
+
     private String dateOfRegistration;
-
-    public String getDateOfRegistration() {
-        return dateOfRegistration;
-    }
-
-    public void setDateOfRegistration(String dateOfRegistration) {
-        this.dateOfRegistration = dateOfRegistration;
-    }
 
     private int clientId;
 
-    Client(int clientId, GregorianCalendar gregorianCalendar) {
+    public Client() {
+    }
+
+    /**
+     * @param clientId unique Client id
+     * @param gregorianCalendar used for obtaining dateOfRegistration
+     */
+    public Client(int clientId, GregorianCalendar gregorianCalendar) {
         this.clientId = clientId;
         this.dateOfRegistration = sdf.format(gregorianCalendar.getTime());
     }
@@ -58,30 +59,30 @@ public abstract class Client implements AccountChangeAbility, Serializable {
 
         Client client = (Client) o;
 
-        return clientId == client.clientId;
+        if (clientId != client.clientId) return false;
+        return dateOfRegistration != null ? dateOfRegistration.equals(client.dateOfRegistration) : client.dateOfRegistration == null;
 
     }
 
     @Override
     public int hashCode() {
-        return clientId;
-    }
-
-    public int getClientId() {
-        return clientId;
+        int result = dateOfRegistration != null ? dateOfRegistration.hashCode() : 0;
+        result = 31 * result + clientId;
+        return result;
     }
 
     /**
      * This method returns you a Client object by clientId
+     * @param clientId unique Client id
      */
     public static Client getClientById(int clientId){
       return Database.listOfClients.get(clientId);
     }
 
     /**
-     * @return returns you all acountIds that Client has
+     * @return returns you all accountIds of accounts that Client has
      */
-    public List<Integer> getAccountList(int clientId){
+    public static List<Integer> getAccountList(int clientId){
         return Database.clientsAndAccounts.get(clientId);
     }
 
@@ -97,9 +98,9 @@ public abstract class Client implements AccountChangeAbility, Serializable {
 
     /**
      * <p>Method for creating a Deposit</p>
-     * <p>Client calls Manager to create an account</p>
+     * <p>Client calls Manager to create a deposit</p>
      * @param initialContribution is the amount of money that Client put into the account at first time
-     * @param term the amount of months which the deposit will be kept in the bank
+     * @param term deposit duration(sets in month)
      * @param persentage amount of interest that the client will receive per month
      */
     public Account createAccount(int initialContribution, int term,
@@ -109,70 +110,42 @@ public abstract class Client implements AccountChangeAbility, Serializable {
                 persentage, currency);
     }
 
+    public String getDateOfRegistration() {
+        return dateOfRegistration;
+    }
 
-    /**
-     * <p>Method allows the Client to take money from his account</p>
-     * @param accountId unique accountId
-     * @param money money that Client decided to take
-     */
+    public int getClientId() {
+        return clientId;
+    }
+
     public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
       new Manager().takeMoney(accountId,money);
     }
 
-    /**
-     * This method puts money into the account
-     * @param accountId unique accountId
-     * @param money money that Client decided to take*/
     public void putMoney(int accountId, int money) {
         new Manager().putMoney(accountId, money);
     }
 
-    /**
-     * @param accountId unique accountId
-     * @return returns you amount of money that Client has on his account
-     */
-    public int accountBalanceCheck(int accountId){
-        return Account.getAccountById(accountId).getAmountOfMoney();
-    }
-
-    /**
-     * @return returns you amount of money that Client has on all his accounts
-     */
-    public int allAccountsBalanceCheck(){
-        List<Integer> list = getAccountList(clientId);
-        /**This int contains summ of Client's money from all Accounts*/
-        int allMoney = 0;
-        for (Integer aList : list) {
-            Account account = Account.getAccountById(aList);
-            allMoney += account.getAmountOfMoney();
-        }
-        return allMoney;
-    }
-
-    /**
-     * This method deletes account by ID
-     */
     public void deleteAccount(int accountId) throws IOException{
         new Manager().deleteAccount(accountId);
     }
 
-    /**This method allows Client to set term of his deposit*/
     public void setTerm(Account account, int pastTerm) throws IOException, TermCanNotRaiseException{
         if (! (account instanceof Deposit)){
             throw new IllegalArgumentException("This Account is not Deposit and do not have term");
         }else new Manager().setTerm(account, pastTerm);
     }
 
-    /**
-     * This method sorts all clients Accounts by amount of money
-     * @return TreeSet with accounts*/
-    public TreeSet<Account> accountSort(){
-        List<Integer> listOfAccounts = Database.clientsAndAccounts.get(this.getClientId());
-        TreeSet<Account> sortedAccounts = new TreeSet<>();
-        for (int i = 0; i < listOfAccounts.size()-1; i++) {
-            sortedAccounts.add(Account.getAccountById(listOfAccounts.get(i)));
-        }
-        return sortedAccounts;
+    public TreeSet<Account> sortAccounts(){
+        return new Manager().sortAccounts(clientId);
+    }
+
+    public int accountBalanceCheck(int accountId){
+        return new Manager().accountBalanceCheck(accountId);
+    }
+
+    public int allAccountsBalanceCheck(){
+        return new Manager().allAccountsBalanceCheck(clientId);
     }
 }
 

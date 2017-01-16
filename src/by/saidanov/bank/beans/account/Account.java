@@ -20,15 +20,20 @@ public class Account implements Comparable<Account>, Serializable{
     /**This counter ensures the uniqueness of each Account*/
     public static int accountIdCounter = 0;
 
+    public static final long serialVersionUID = 10;
+
     protected int accountId;
 
     private int clientId;
 
     private int initialContribution;
 
-    /**amountOfMoney will raise if Client decided to put money into the Account, and will fall if Client decided to take money from account.
-     * At the time of account creation amountOfMoney == initial contribution*/
+    /**The amount of money in the account.
+     *at the time of the creation an account amountOfMoney == initial contribution*/
     protected int amountOfMoney;
+
+    public Account() {
+    }
 
     /**
      * Constructor of Account
@@ -43,13 +48,17 @@ public class Account implements Comparable<Account>, Serializable{
         this.clientId = clientId;
     }
 
+    /**
+     * @param accountId unique Account id
+     * @return account by unique id
+     */
     public static Account getAccountById(int accountId) {
         try {
             Validator.accountIDValidation(accountId);
         } catch (WrongAccountIdException e) {
             e.printStackTrace();
         }
-        return (Account) Database.listOfAccounts.get(accountId);
+        return Database.listOfAccounts.get(accountId);
     }
 
     @Override
@@ -59,7 +68,6 @@ public class Account implements Comparable<Account>, Serializable{
                 + "; initialContribution : " + initialContribution
                 + "; amountOfMoney : " + amountOfMoney;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -83,8 +91,6 @@ public class Account implements Comparable<Account>, Serializable{
         result = 31 * result + amountOfMoney;
         return result;
     }
-
-
 
     public int getAmountOfMoney() {
         return amountOfMoney;
@@ -110,7 +116,6 @@ public class Account implements Comparable<Account>, Serializable{
     public int getInitialContribution() {
         return initialContribution;
     }
-
 
     @Override
     public int compareTo(Account o) {

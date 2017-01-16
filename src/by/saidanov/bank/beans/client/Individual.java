@@ -17,8 +17,10 @@ public class Individual extends Client {
     private String name;
     private String surname;
     private int age;
-    private int happiness;
+    transient private int happiness;
 
+    public Individual() {
+    }
 
     /**
      * <p>Constructor of Individual class</p>
@@ -26,6 +28,7 @@ public class Individual extends Client {
      * @param name name of Individual
      * @param surname surname of Individual
      * @param age age of Individual
+     * @param gregorianCalendar used for obtaining dateOfRegistration
      */
     public Individual(int clientId, String name, String surname, int age, GregorianCalendar gregorianCalendar) {
         super(clientId, gregorianCalendar);
@@ -51,6 +54,7 @@ public class Individual extends Client {
                 : individual.surname == null;
 
     }
+
     @Override
     public int hashCode() {
         int result = super.hashCode();
@@ -60,6 +64,7 @@ public class Individual extends Client {
         result = 31 * result + happiness;
         return result;
     }
+
     @Override
     public String toString() {
         return "clientId " + this.getClientId() + "; Individual -" +
@@ -89,8 +94,5 @@ public class Individual extends Client {
 
     public int getAge() {
         return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
     }
 }

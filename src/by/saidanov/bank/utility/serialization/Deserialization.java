@@ -4,6 +4,7 @@ import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.client.Client;
 import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.beans.database.DatabaseHelper;
+import by.saidanov.bank.utility.Constants;
 
 import java.io.*;
 
@@ -16,11 +17,12 @@ import java.io.*;
  *
  * This class deserialize clients and accounts
  */
-public class Deserialization {
+public final class Deserialization {
 
+    /**This method deserialize Account objects from file*/
     public static void accountDeserialization() throws IOException, ClassNotFoundException {
         try {
-            try (FileInputStream fis = new FileInputStream("account.ser");
+            try (FileInputStream fis = new FileInputStream(Constants.ACCOUNT_SER_FILE);
                  ObjectInputStream objectInputStream = new ObjectInputStream(fis)) {
                 while(fis.available() != 0) {
                     Account account = (Account) objectInputStream.readObject();
@@ -35,9 +37,10 @@ public class Deserialization {
         }
     }
 
+    /**This method deserialize Client objects from file*/
     public static void clientDesirialization() throws IOException, ClassNotFoundException {
         try {
-            try (FileInputStream fis = new FileInputStream("client.ser");
+            try (FileInputStream fis = new FileInputStream(Constants.CLIENT_SER_FILE);
                  ObjectInputStream objectInputStream = new ObjectInputStream(fis)) {
                 while (fis.available() != 0) {
                     Client client = (Client) objectInputStream.readObject();
@@ -51,22 +54,29 @@ public class Deserialization {
         }
     }
 
-    public static String findSerFiles(){
+    /**This method tries to find .ser files
+     * @return true if files are found
+     */
+    public static boolean findSerFiles(){
         FileInputStream clientSer = null;
         FileInputStream accountSer = null;
         try {
-            clientSer = new FileInputStream("client.ser");
-            accountSer = new FileInputStream("account.ser");
-            return "Yes";
+            clientSer = new FileInputStream(Constants.CLIENT_SER_FILE);
+            accountSer = new FileInputStream(Constants.ACCOUNT_SER_FILE);
+            return true;
         } catch (FileNotFoundException e) {
-            return "No";
+            return false;
         }finally {
             try {
-                clientSer.close();
-                accountSer.close();
+                if (clientSer != null) {
+                    clientSer.close();
+                }
+                if (accountSer != null) {
+                    accountSer.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-            }catch (NullPointerException e){}
+            }
         }
     }
 

@@ -2,9 +2,10 @@ package by.saidanov.bank.beans;
 
 import by.saidanov.bank.beans.account.Account;
 import by.saidanov.bank.beans.account.Deposit;
+import by.saidanov.bank.beans.client.Client;
 import by.saidanov.bank.beans.database.Database;
-import by.saidanov.bank.beans.database.DatabaseHelper;
-import by.saidanov.bank.beans.interfaces.AccountChangeAbility;
+import by.saidanov.bank.interfaces.AccountChangeAbility;
+import by.saidanov.bank.interfaces.AccountCheckAbility;
 import by.saidanov.bank.utility.io.AccountIO;
 import by.saidanov.bank.utility.io.ClientIO;
 import by.saidanov.bank.utility.factory.AccountFactory;
@@ -13,6 +14,7 @@ import by.saidanov.bank.exceptions.TermCanNotRaiseException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Manager
@@ -23,7 +25,7 @@ import java.util.List;
  *
  * Manager helps Client to manage all Clients accounts.
  */
-public class Manager implements AccountChangeAbility {
+public class Manager implements AccountChangeAbility, AccountCheckAbility {
 
     public Manager() {
     }
@@ -50,20 +52,15 @@ public class Manager implements AccountChangeAbility {
         return AccountFactory.createAccount(clientId, initialContribution, term, persentage, currency, Account.accountIdCounter);
     }
 
-    /**
-     * <p>Method allows the Client to take money from his account</p>
-     * @param accountId unique accountId
-     * @param money money that Client decided to take
-     */
     public void takeMoney(int accountId, int money) throws NotEnoughMoneyException {
-        Account account = (Account) Database.listOfAccounts.get(accountId);
-        int i = account.setAmountOfMoney(account.getAmountOfMoney() - money);
-        if(i<0){
+        Account account = Database.listOfAccounts.get(accountId);
+        int actualAmountOfMoney = account.setAmountOfMoney(account.getAmountOfMoney() - money);
+        if(actualAmountOfMoney < 0){
             account.setAmountOfMoney(account.getAmountOfMoney() + money);
             throw new NotEnoughMoneyException("Sorry, you do not have enough money." +
                     "Your amount of money in this account: " +  account.getAmountOfMoney());
         }
-        account.setAmountOfMoney(i);
+        account.setAmountOfMoney(actualAmountOfMoney);
         Database.listOfAccounts.set(accountId, account);
         try {
             AccountIO accountIO = new AccountIO();
@@ -73,24 +70,17 @@ public class Manager implements AccountChangeAbility {
         }
     }
 
-    /**
-     * This method puts money into the account
-     * @param accountId unique accountId
-     * @param money money that Client decided to take
-     */
     public void putMoney(int accountId, int money) {
-        Account account = (Account) Database.listOfAccounts.get(accountId);
+        Account account = Database.listOfAccounts.get(accountId);
         account.setAmountOfMoney(account.getAmountOfMoney() + money);
     }
 
-    /**This method deletes Client's account
-     */
     public void deleteAccount(int accountId) throws IOException {
         int clientID = Account.getAccountById(accountId).getClientId();
         new ClientIO().deleteAccountFromClientFile(clientID, accountId);
         new AccountIO().deleteAccount(accountId);
         List<Integer> listOfAccounts = Database.clientsAndAccounts.get(clientID);
-        for (Integer i : listOfAccounts) {
+        for (int i = 0; i < listOfAccounts.size(); i++) {
             if (i == accountId){
                 listOfAccounts.remove(i);
             }
@@ -100,11 +90,32 @@ public class Manager implements AccountChangeAbility {
         account.setAccountId(-1);
     }
 
-    /**
-     * This method sets term of deposit
-     */
     public void setTerm(Account account, int pastTerm) throws IOException, TermCanNotRaiseException {
         Deposit deposit = (Deposit) account;
         deposit.setTerm(pastTerm);
+    }
+
+    public TreeSet<Account> sortAccounts(int clientId){
+        List<Integer> listOfAccounts = Database.clientsAndAccounts.get(clientId);
+        TreeSet<Account> sortedAccounts = new TreeSet<>();
+        for (int i = 0; i < listOfAccounts.size()-1; i++) {
+            sortedAccounts.add(Account.getAccountById(listOfAccounts.get(i)));
+        }
+        return sortedAccounts;
+    }
+
+    public int accountBalanceCheck(int accountId){
+        return Account.getAccountById(accountId).getAmountOfMoney();
+    }
+
+    public int allAccountsBalanceCheck(int clientId){
+        List<Integer> list = Client.getAccountList(clientId);
+        /*This int contains sum of Client's money from all Accounts*/
+        int allMoney = 0;
+        for (Integer aList : list) {
+            Account account = Account.getAccountById(aList);
+            allMoney += account.getAmountOfMoney();
+        }
+        return allMoney;
     }
 }

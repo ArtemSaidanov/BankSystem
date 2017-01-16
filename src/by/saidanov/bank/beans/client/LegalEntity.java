@@ -16,14 +16,21 @@ import java.util.GregorianCalendar;
 public class LegalEntity extends Client {
 
     private String typeOfBusiness;
+
     private String responsiblePersonName;
-    private int totalInvestment;
+
+    transient private int totalInvestment;
+
+    public LegalEntity() {
+        super();
+    }
 
     /**
      * <p>Constructor of LegalEntity class</p>
      * @param clientId unique id of Client
      * @param typeOfBusiness the type of business activity
      * @param responsiblePersonName person communicating with the manager
+     * @param gregorianCalendar used for obtaining dateOfRegistration
      */
     public LegalEntity(int clientId, String typeOfBusiness, String responsiblePersonName, GregorianCalendar gregorianCalendar) {
         super(clientId, gregorianCalendar);
@@ -34,7 +41,7 @@ public class LegalEntity extends Client {
     @Override
     public String toString() {
         return "clientId " + this.getClientId() + "; LegalEntity -" +
-                " TypeOfBusiness: " + typeOfBusiness + "; BossName: " + responsiblePersonName + "; Date of registration: " + getDateOfRegistration();
+                " TypeOfBusiness: " + typeOfBusiness + "; ResponsiblePersonName: " + responsiblePersonName + "; Date of registration: " + getDateOfRegistration();
     }
     @Override
     public boolean equals(Object o) {

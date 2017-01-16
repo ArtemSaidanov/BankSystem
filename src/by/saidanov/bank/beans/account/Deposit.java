@@ -17,13 +17,25 @@ import java.io.IOException;
  */
 public class Deposit extends Account {
 
-    /**
-     * the initial deposit term*/
     private int term;
+
     private double persentage;
+
     private DepositCurrency currency;
+
     private int depositProfit;
 
+    public Deposit() {
+        super();
+    }
+
+    /**
+     * @param clientId unique Client id
+     * @param initialContribution is the amount of money that Client put into the account at first time
+     * @param term deposit duration(sets in month)
+     * @param persentage amount of interest that the client will receive per month
+     * @param accountId unique Account id
+     */
     public Deposit(int clientId, int initialContribution, int term, double persentage,
                    DepositCurrency currency, int accountId) {
         super(clientId, initialContribution, accountId);
@@ -37,7 +49,7 @@ public class Deposit extends Account {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (! super.equals(o)) return false;
+        if (!super.equals(o)) return false;
 
         Deposit deposit = (Deposit) o;
 
@@ -76,17 +88,18 @@ public class Deposit extends Account {
     public int getAmountOfMoney() {
         return super.getAmountOfMoney();
     }
+
     /**
      * This method changes amount of money on Client deposit.
      * <p>And if Client takes money before the term of deposit left,
      * Client stills a half of his profit</p>
      * @param amountOfMoney after performing operations
-     * */
+     */
     @Override
     public int setAmountOfMoney(int amountOfMoney) {
         int oldBalance = super.getAmountOfMoney();
-        /**This "if" works for Client.takeMoney method
-         * <p>"else" works for Client.putMoney method</p>*/
+        /* This "if" works for Client.takeMoney method
+          <p>"else" works for Client.putMoney method</p>*/
         if(oldBalance > amountOfMoney && term != 0){
             depositProfit = depositProfit/2;
             super.setAmountOfMoney(oldBalance - amountOfMoney);
@@ -97,13 +110,15 @@ public class Deposit extends Account {
     public int getTerm() {
         return term;
     }
+
     /**
      * @param pastTerm it indicates how many months of the deposit remains
+     * @throws TermCanNotRaiseException when Client try to raise term of deposit
      */
     public void setTerm(int pastTerm) throws TermCanNotRaiseException, IOException {
         if (pastTerm > this.term) throw new TermCanNotRaiseException("You can't raise term of deposit. Term of deposit may only fall.");
         int oldProfit = depositProfit;
-        setDepositProfit(this.term - pastTerm, this.persentage);
+        setDepositProfit(this.term - pastTerm);
         setAmountOfMoney(getAmountOfMoney() + (depositProfit - oldProfit));
         this.term = pastTerm;
         new AccountIO().changeTerm(this.getAccountId(), pastTerm, depositProfit);
@@ -112,12 +127,13 @@ public class Deposit extends Account {
     public int getDepositProfit() {
         return depositProfit;
     }
+
     /**
      * This method set profit from deposit for the number of past months
      * @param termLeft it indicates how many months of the deposit left
      */
-    public void setDepositProfit(int termLeft, double persentage) {
-        int monthProfit = (int) (getInitialContribution()/100 * persentage);
+    public void setDepositProfit(int termLeft) {
+        int monthProfit = (int) (getInitialContribution()/100 * this.persentage);
         this.depositProfit = this.depositProfit + (termLeft * monthProfit);
     }
 
@@ -132,11 +148,13 @@ public class Deposit extends Account {
     public int getAccountId() {
         return accountId;
     }
+
     public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
 
 
-
-
+    public void setDepositProfitInInt(int depositProfitInInt) {
+        depositProfit = depositProfitInInt;
+    }
 }

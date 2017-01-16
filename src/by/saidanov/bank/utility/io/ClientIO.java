@@ -5,9 +5,12 @@ import by.saidanov.bank.beans.database.Database;
 import by.saidanov.bank.beans.client.Client;
 import by.saidanov.bank.beans.client.Individual;
 import by.saidanov.bank.beans.client.LegalEntity;
+import by.saidanov.bank.utility.Constants;
+import by.saidanov.bank.utility.Validator;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,9 +23,7 @@ import java.util.List;
  * This class works with files like with Database
  * Client includes list of clients with all client's parameters
  */
-public class ClientIO {
-
-    private String clientFilePath = "ClientIO.txt";
+public final class ClientIO {
 
     /**
      * This method adds new Client to File
@@ -30,35 +31,32 @@ public class ClientIO {
      */
     public void addClientToFile(Client client) throws IOException {
 
-        FileWriter fileWriter = new FileWriter(clientFilePath, true);
-
-        if (rewriteVerificationClientID(client)) return;
-
-        List<Integer> listOfAccounts = Database.clientsAndAccounts.get(client.getClientId());
-        String stringOfAccounts = "";
-        //Add all client's accounts to string
-        if (listOfAccounts != null) {
-            for (Integer i : listOfAccounts) {
-                stringOfAccounts += listOfAccounts.get(i);
-                stringOfAccounts += ",";
+        try (FileWriter fileWriter = new FileWriter(Constants.CLIENT_FILE_PATH, true)) {
+            if (Validator.rewriteVerificationClientID(client)) return;
+            List<Integer> listOfAccounts = Database.clientsAndAccounts.get(client.getClientId());
+            String stringOfAccounts = "";
+            //Add all client's accounts to string
+            if (listOfAccounts != null) {
+                for (Integer accountId : listOfAccounts) {
+                    stringOfAccounts += listOfAccounts.get(accountId);
+                    stringOfAccounts += ",";
+                }
+            }
+            if (client instanceof Individual) {
+                fileWriter.write(client.getClientId() + " - Client ID"
+                        + "; Name: " + ((Individual) client).getName()
+                        + "; Surname: " + ((Individual) client).getSurname()
+                        + "; Age: " + ((Individual) client).getAge()
+                        + "; List of Accounts: " + stringOfAccounts
+                        + "\r" + "\n");
+            } else if (client instanceof LegalEntity) {
+                fileWriter.write(client.getClientId() + " - Client ID"
+                        + "; Type of Business: " + ((LegalEntity) client).getTypeOfBusiness()
+                        + "; Responsible person: " + ((LegalEntity) client).getResponsiblePersonName()
+                        + "; List of Accounts: " + stringOfAccounts
+                        + "\r" + "\n");
             }
         }
-
-        if (client instanceof Individual) {
-            fileWriter.write(client.getClientId() + " - Client ID"
-                    + "; Name: " + ((Individual) client).getName()
-                    + "; Surname: " + ((Individual) client).getSurname()
-                    + "; Age: " + ((Individual) client).getAge()
-                    + "; List of Accounts: " + stringOfAccounts
-                    + "\r" + "\n");
-        } else if (client instanceof LegalEntity) {
-            fileWriter.write(client.getClientId() + " - Client ID"
-                    + "; Type of Business: " + ((LegalEntity) client).getTypeOfBusiness()
-                    + "; Responsible person: " + ((LegalEntity) client).getResponsiblePersonName()
-                    + "; List of Accounts: " + stringOfAccounts
-                    + "\r" + "\n");
-        }
-        fileWriter.close();
     }
 
     /**
@@ -68,79 +66,44 @@ public class ClientIO {
      */
     public void addAccountToClientFile(int clientID, int accountID) throws IOException {
         int clientInFileID;
-        BufferedReader fileReader = new BufferedReader(new FileReader(clientFilePath));
-        List<String> listOfLines = new ArrayList<>();
-
+        List<String> listOfLines;
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(Constants.CLIENT_FILE_PATH))) {
+            listOfLines = new ArrayList<>();
         /*This "while" reads lines from file*/
-        while (fileReader.ready()) {
-
-            String lineFromFile = fileReader.readLine();
-            /*Split lineFromFile by spaces*/
-            String[] splitLineFromFile = lineFromFile.split(" ");
-            /*Convert splitted line massive into List*/
-            List<String> splitLineList = new ArrayList<>();
-            for (int i = 0; i < splitLineFromFile.length; i++){
-                splitLineList.add(splitLineFromFile[i]);
-            }
-
-            /*Parse client id from file*/
-            try {
-                clientInFileID = Integer.parseInt(splitLineFromFile[0]);
-            } catch (NumberFormatException e) {
-                System.out.println("NumberFormatException in ClientIO");
-                continue;
-            }
-
-            /*if client id from file == client id from method argument*/
-            if (clientInFileID == clientID) {
-                /*add new client's account id to file*/
-                splitLineList.add(String.valueOf(accountID));
-            }
-
-            lineFromFile = "";
-            /*Cycle to fill our string with String[] splitLineFromFile*/
-            for (int j = 0; j < splitLineList.size(); j++) {
-                lineFromFile += splitLineList.get(j) + " ";
-            }
-            listOfLines.add(lineFromFile);
-        }
-        fileReader.close();
-
-        /*Clean file*/
-        FileWriter fileCleaner = new FileWriter(clientFilePath);
-        fileCleaner.write("");
-        fileCleaner.close();
-        /*Writing in file line by line*/
-        FileWriter writer = new FileWriter(clientFilePath, true);
-        for (String s : listOfLines) {
-            writer.write(s + "\r" + "\n");
-        }
-        writer.close();
-    }
-
-    /**
-     * This method prevents rewrite
-     * @param client - that we want to add into the file
-     */
-    private boolean rewriteVerificationClientID(Client client) throws IOException {
-        try (BufferedReader fileReader = new BufferedReader(new FileReader(clientFilePath))) {
-            int clientInFileID;
             while (fileReader.ready()) {
                 String lineFromFile = fileReader.readLine();
                 /*Split lineFromFile by spaces*/
                 String[] splitLineFromFile = lineFromFile.split(" ");
+                /*Convert splitted line massive into List*/
+                List<String> splitLineList = new ArrayList<>();
+                Collections.addAll(splitLineList, splitLineFromFile);
                 /*Parse client id from file*/
                 try {
-                    clientInFileID = Integer.parseInt(splitLineFromFile[0]);
+                    clientInFileID = Integer.parseInt(splitLineFromFile[Constants.CLIENT_IN_FILE_ID]);
                 } catch (NumberFormatException e) {
                     System.out.println("NumberFormatException in ClientIO");
                     continue;
                 }
-                if (clientInFileID == client.getClientId()) {
-                    return true;
+                /*if client id from file == client id from method argument*/
+                if (clientInFileID == clientID) {
+                    /*add new client's account id to file*/
+                    splitLineList.add(String.valueOf(accountID));
                 }
+                lineFromFile = "";
+                /*Cycle to fill our string with String[] splitLineFromFile*/
+                for (int j = 0; j < splitLineList.size(); j++) {
+                    lineFromFile += splitLineList.get(j) + " ";
+                }
+                listOfLines.add(lineFromFile);
             }
-            return false;
+        }
+        /*Clean file*/
+        FileCleaner.cleanFile(Constants.CLIENT_FILE_PATH);
+        /*Writing in file line by line*/
+        try (FileWriter writer = new FileWriter(Constants.CLIENT_FILE_PATH, true)) {
+            for (String s : listOfLines) {
+                writer.write(s + "\r" + "\n");
+            }
         }
     }
 
@@ -152,55 +115,53 @@ public class ClientIO {
     public void deleteAccountFromClientFile(int clientID, int accountID) throws IOException{
         final int accountPositionInList = 13;
         int clientInFileID;
-        BufferedReader fileReader = new BufferedReader(new FileReader(clientFilePath));
-        List<String> listOfLines = new ArrayList<>();
+        List<String> listOfLines;
+        try (BufferedReader fileReader = new BufferedReader(new FileReader(Constants.CLIENT_FILE_PATH))) {
+            listOfLines = new ArrayList<>();
 
         /*This "while" reads lines from file*/
-        while (fileReader.ready()) {
-            String lineFromFile = fileReader.readLine();
-            /*Split lineFromFile by spaces*/
-            String[] splitLineFromFile = lineFromFile.split(" ");
-            /*Convert splitted line massive into List*/
-            List<String> splitLineList = new ArrayList<>();
-            for (int i = 0; i < splitLineFromFile.length; i++){
-                splitLineList.add(splitLineFromFile[i]);
-            }
-            /*Parse client id from file*/
-            try {
-                clientInFileID = Integer.parseInt(splitLineFromFile[0]);
-            } catch (NumberFormatException e) {
-                System.out.println("NumberFormatException in ClientIO");
-                continue;
-            }
-            /*if client id from file == client id from method argument*/
-            if (clientInFileID == clientID) {
-                int accountInFileID;
-                for (int i = accountPositionInList; i < splitLineList.size(); i++){
-                    accountInFileID = Integer.parseInt(splitLineList.get(i));
-                    if (accountID == accountInFileID){
-                        splitLineList.remove(i);
+            while (fileReader.ready()) {
+                String lineFromFile = fileReader.readLine();
+                /*Split lineFromFile by spaces*/
+                String[] splitLineFromFile = lineFromFile.split(" ");
+                /*Convert splitted line massive into List*/
+                List<String> splitLineList = new ArrayList<>();
+                for (int i = 0; i < splitLineFromFile.length; i++) {
+                    splitLineList.add(splitLineFromFile[i]);
+                }
+                /*Parse client id from file*/
+                try {
+                    clientInFileID = Integer.parseInt(splitLineFromFile[Constants.CLIENT_IN_FILE_ID]);
+                } catch (NumberFormatException e) {
+                    System.out.println("NumberFormatException in ClientIO");
+                    continue;
+                }
+                /*if client id from file == client id from method argument*/
+                if (clientInFileID == clientID) {
+                    int accountInFileID;
+                    for (int i = accountPositionInList; i < splitLineList.size(); i++) {
+                        accountInFileID = Integer.parseInt(splitLineList.get(i));
+                        if (accountID == accountInFileID) {
+                            splitLineList.remove(i);
+                        }
                     }
                 }
+                lineFromFile = "";
+                /*Cycle to fill our string with String[] splitLineFromFile*/
+                for (int j = 0; j < splitLineList.size(); j++) {
+                    lineFromFile += splitLineList.get(j) + " ";
+                }
+                listOfLines.add(lineFromFile);
             }
-            lineFromFile = "";
-            /*Cycle to fill our string with String[] splitLineFromFile*/
-            for (int j = 0; j < splitLineList.size(); j++) {
-                lineFromFile += splitLineList.get(j) + " ";
-            }
-            listOfLines.add(lineFromFile);
         }
-        fileReader.close();
-
         /*Clean file*/
-        FileWriter fileCleaner = new FileWriter(clientFilePath);
-        fileCleaner.write("");
-        fileCleaner.close();
+        FileCleaner.cleanFile(Constants.CLIENT_FILE_PATH);
         /*Writing in file line by line*/
-        FileWriter writer = new FileWriter(clientFilePath, true);
-        for (String s : listOfLines) {
-            writer.write(s + "\r" + "\n");
+        try (FileWriter writer = new FileWriter(Constants.CLIENT_FILE_PATH, true)) {
+            for (String s : listOfLines) {
+                writer.write(s + "\r" + "\n");
+            }
         }
-        writer.close();
     }
 
 }

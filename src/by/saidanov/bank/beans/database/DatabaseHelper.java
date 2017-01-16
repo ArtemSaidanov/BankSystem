@@ -1,7 +1,5 @@
 package by.saidanov.bank.beans.database;
 
-import by.saidanov.bank.beans.account.Account;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,9 @@ public final class DatabaseHelper {
 
     /**
      * This method adds unique clientId and list of client account ids
-     * to the Map in database*
+     * to the Map in database
+     * @param accountId unique Account id
+     * @param clientId unique Client id
      */
     public static void addToDatabase(int clientId, int accountId){
         List<Integer> list;
